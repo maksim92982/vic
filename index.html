@@ -9,6 +9,135 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/base.css">
   <link rel="stylesheet" href="styles/layout.css">
+  <style>
+    /* Базовые стили для выпадающего меню */
+    .main-menu ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .main-menu {
+      position: relative;
+    }
+    
+    .main-menu .menu {
+      display: flex;
+      gap: 2rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    
+    .main-menu .menu-item {
+      position: relative;
+    }
+    
+    .main-menu .menu-item a {
+      display: block;
+      padding: 0.5rem 0;
+      color: #333;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    .main-menu .menu-item a:hover {
+      color: #c79d63;
+    }
+    
+    /* Стили для выпадающих подменю */
+    .main-menu .sub-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 250px;
+      background: #fff;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      border-radius: 4px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+    
+    .main-menu .menu-item-has-children:hover .sub-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    
+    .main-menu .sub-menu .menu-item {
+      width: 100%;
+    }
+    
+    .main-menu .sub-menu a {
+      padding: 0.75rem 1.5rem;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .main-menu .sub-menu .menu-item:last-child a {
+      border-bottom: none;
+    }
+    
+    /* Стрелка для пунктов с подменю */
+    .main-menu .menu-item-has-children > a {
+      position: relative;
+      padding-right: 20px;
+    }
+    
+    .main-menu .menu-item-has-children > a::after {
+      content: '▼';
+      font-size: 10px;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    
+    /* Мобильное меню */
+    @media (max-width: 768px) {
+      .main-menu .menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #fff;
+        padding: 1rem;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      }
+      
+      .main-menu.menu-open .menu {
+        display: flex;
+      }
+      
+      .main-menu .sub-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        padding-left: 1.5rem;
+        display: none;
+      }
+      
+      .main-menu .menu-item-has-children.active .sub-menu {
+        display: block;
+      }
+      
+      .main-menu .menu-item-has-children > a::after {
+        content: '+';
+        font-size: 16px;
+      }
+      
+      .main-menu .menu-item-has-children.active > a::after {
+        content: '−';
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="page-wrapper">
@@ -25,11 +154,52 @@
         </div>
         <button class="menu-toggle" aria-expanded="false" aria-controls="primary-menu">Меню</button>
         <nav class="main-menu" id="primary-menu">
-          <a href="#about">О компании</a>
-          <a href="#services">Услуги</a>
-          <a href="#cases">Кейсы</a>
-          <a href="#blog">Блог</a>
-          <a href="#contacts">Контакты</a>
+          <ul class="menu">
+            <li class="menu-item"><a href="#home">Главная</a></li>
+            
+            <li class="menu-item menu-item-has-children">
+              <a href="#about">О компании</a>
+              <ul class="sub-menu">
+                <li class="menu-item"><a href="#mission">Миссия и ценности</a></li>
+                <li class="menu-item"><a href="#team">Команда экспертов</a></li>
+                <li class="menu-item"><a href="#partners">Наши партнёры</a></li>
+                <li class="menu-item"><a href="#reviews">Отзывы клиентов</a></li>
+                <li class="menu-item"><a href="#licenses">Сертификаты и лицензии</a></li>
+              </ul>
+            </li>
+            
+            <li class="menu-item menu-item-has-children">
+              <a href="#services">Услуги</a>
+              <ul class="sub-menu">
+                <li class="menu-item"><a href="#service-1">Бухгалтерский аутсорсинг</a></li>
+                <li class="menu-item"><a href="#service-2">Кадровый учёт</a></li>
+                <li class="menu-item"><a href="#service-3">Финансовый консалтинг</a></li>
+                <li class="menu-item"><a href="#service-4">Юридические услуги</a></li>
+                <li class="menu-item"><a href="#service-5">Кризис-менеджмент</a></li>
+              </ul>
+            </li>
+            
+            <li class="menu-item"><a href="#cases">Кейсы (Реализованные проекты)</a></li>
+            
+            <li class="menu-item menu-item-has-children">
+              <a href="#blog">Блог / Публикации</a>
+              <ul class="sub-menu">
+                <li class="menu-item"><a href="#articles">Статьи</a></li>
+                <li class="menu-item"><a href="#news">Новости компании</a></li>
+                <li class="menu-item"><a href="#video">Полезные видео</a></li>
+              </ul>
+            </li>
+            
+            <li class="menu-item menu-item-has-children">
+              <a href="#contacts">Контакты</a>
+              <ul class="sub-menu">
+                <li class="menu-item"><a href="#address">Адрес и схема проезда</a></li>
+                <li class="menu-item"><a href="#details">Реквизиты компании</a></li>
+                <li class="menu-item"><a href="#feedback">Обратная связь</a></li>
+                <li class="menu-item"><a href="#phones">Телефон, e-mail, мессенджеры</a></li>
+              </ul>
+            </li>
+          </ul>
         </nav>
       </div>
     </header>
@@ -184,6 +354,43 @@
       <div class="copyright">Copyright © 2016-2026 Все права защищены.</div>
     </footer>
   </div>
-  <script src="scripts/main.js"></script>
+  <script>
+    // JavaScript для мобильного меню
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuToggle = document.querySelector('.menu-toggle');
+      const mainMenu = document.querySelector('.main-menu');
+      
+      if (menuToggle && mainMenu) {
+        menuToggle.addEventListener('click', function() {
+          const expanded = this.getAttribute('aria-expanded') === 'true' ? false : true;
+          this.setAttribute('aria-expanded', expanded);
+          mainMenu.classList.toggle('menu-open');
+        });
+      }
+      
+      // Обработка кликов по пунктам с подменю на мобильных устройствах
+      const menuItems = document.querySelectorAll('.menu-item-has-children');
+      
+      menuItems.forEach(item => {
+        const link = item.querySelector('a');
+        
+        if (window.innerWidth <= 768) {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            item.classList.toggle('active');
+          });
+        }
+      });
+      
+      // Обновление обработчиков при изменении размера окна
+      window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+          menuItems.forEach(item => {
+            item.classList.remove('active');
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
