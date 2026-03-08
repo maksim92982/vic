@@ -7,9 +7,68 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/base.css">
   <link rel="stylesheet" href="styles/layout.css">
   <style>
+    :root {
+      font-family: 'Open Sans', sans-serif;
+      color: #090821;
+      background-color: #f8f8f9;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background-color: #f8f8f9;
+    }
+
+    .page-wrapper {
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .btn {
+      padding: 0.8rem 1.6rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+    }
+
+    .btn.primary {
+      background: #c79d63;
+      color: #fff;
+    }
+
+    .btn.ghost {
+      background: transparent;
+      border-color: #fff;
+      color: #fff;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .section-header h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2rem;
+    }
+
+    .section-header p {
+      color: #4a4a4a;
+    }
+
     /* Базовые стили для выпадающего меню */
     .main-menu ul {
       list-style: none;
@@ -212,9 +271,7 @@
     </header>
 
     <section class="hero" id="home">
-      <video class="hero-video" autoplay muted loop playsinline>
-        <source src="assets/mainpage.gif" type="video/gif">
-      </video>
+    <img class="hero-media" src="assets/mainpage.gif" alt="Городская панорама">
       <div class="hero-overlay">
         <p class="hero-pretitle">20 лет опыта</p>
         <h1>Бухгалтерское ведение и обслуживание малого и среднего бизнеса</h1>
