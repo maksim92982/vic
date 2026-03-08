@@ -190,6 +190,21 @@ body {
   margin: 0;
   line-height: 1.6;
 }
+.site-footer ul li {
+  margin-bottom: 0.4rem;
+}
+.site-footer ul li a {
+  color: #090821;
+  font-weight: 400;
+  display: block;
+  letter-spacing: 0.02em;
+  font-size: 0.95rem;
+  text-transform: none;
+  transition: color 0.2s ease;
+}
+.site-footer ul li a:hover {
+  color: #c79d63;
+}
 .socials {
   display: flex;
   gap: 0.5rem;
