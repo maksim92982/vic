@@ -3,21 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Кризис-менеджмент — Виктория Консалт</title>
+  <title>Виктория Консалт</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/base.css">
   <link rel="stylesheet" href="styles/layout.css">
   <style>
+    /* Базовые стили для выпадающего меню */
     .main-menu ul {
       list-style: none;
       margin: 0;
       padding: 0;
     }
+    
     .main-menu {
       position: relative;
     }
+    
     .main-menu .menu {
       display: flex;
       gap: 2rem;
@@ -25,9 +28,11 @@
       padding: 0;
       list-style: none;
     }
+    
     .main-menu .menu-item {
       position: relative;
     }
+    
     .main-menu .menu-item a {
       display: block;
       padding: 0.5rem 0;
@@ -36,9 +41,12 @@
       font-weight: 500;
       transition: color 0.3s;
     }
+    
     .main-menu .menu-item a:hover {
       color: #c79d63;
     }
+    
+    /* Стили для выпадающих подменю */
     .main-menu .sub-menu {
       position: absolute;
       top: 100%;
@@ -53,25 +61,32 @@
       transition: all 0.3s ease;
       z-index: 1000;
     }
+    
     .main-menu .menu-item-has-children:hover .sub-menu {
       opacity: 1;
       visibility: visible;
       transform: translateY(0);
     }
+    
     .main-menu .sub-menu .menu-item {
       width: 100%;
     }
+    
     .main-menu .sub-menu a {
       padding: 0.75rem 1.5rem;
       border-bottom: 1px solid #f0f0f0;
     }
+    
     .main-menu .sub-menu .menu-item:last-child a {
       border-bottom: none;
     }
+    
+    /* Стрелка для пунктов с подменю */
     .main-menu .menu-item-has-children > a {
       position: relative;
       padding-right: 20px;
     }
+    
     .main-menu .menu-item-has-children > a::after {
       content: '▼';
       font-size: 10px;
@@ -80,6 +95,8 @@
       top: 50%;
       transform: translateY(-50%);
     }
+    
+    /* Мобильное меню */
     @media (max-width: 768px) {
       .main-menu .menu {
         display: none;
@@ -92,9 +109,11 @@
         padding: 1rem;
         box-shadow: 0 5px 20px rgba(0,0,0,0.1);
       }
+      
       .main-menu.menu-open .menu {
         display: flex;
       }
+      
       .main-menu .sub-menu {
         position: static;
         opacity: 1;
@@ -104,163 +123,215 @@
         padding-left: 1.5rem;
         display: none;
       }
+      
       .main-menu .menu-item-has-children.active .sub-menu {
         display: block;
       }
+      
       .main-menu .menu-item-has-children > a::after {
         content: '+';
         font-size: 16px;
       }
+      
       .main-menu .menu-item-has-children.active > a::after {
         content: '−';
       }
-    }
-    .hero-service {
-      position: relative;
-      padding: 4rem 2rem 3rem;
-      background: linear-gradient(135deg, #090821 0%, #1c1540 50%, #3a2359 100%);
-      color: #fff;
-    }
-    .hero-service h1 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: clamp(2.1rem, 3vw, 2.8rem);
-      margin-bottom: 1rem;
-    }
-    .hero-service p {
-      max-width: 720px;
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-    .service-detail {
-      padding: 3rem 2rem 4rem;
-      max-width: 860px;
-      margin: 0 auto;
-      background: #fff;
-    }
-    .service-detail h2 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1.8rem;
-      margin-top: 0;
-      margin-bottom: 1rem;
-    }
-    .service-detail h3 {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1.3rem;
-      margin-top: 2rem;
-      margin-bottom: 0.75rem;
-    }
-    .service-detail p {
-      line-height: 1.7;
-      color: #4a4a4a;
-      margin: 0.5rem 0;
-    }
-    .service-detail ul {
-      padding-left: 1.2rem;
-      color: #4a4a4a;
     }
   </style>
 </head>
 <body>
   <div class="page-wrapper">
     <header class="site-header">
+      <!-- Верхняя строка с режимом работы и адресом (если нужна) -->
       <div class="top-bar">
         <div>Пн-Пт: 10:00-19:00 · Сб-Вс: выходной</div>
         <div>Санкт-Петербург, ул. Маршала Тухачевского, д.22, оф.412</div>
       </div>
-      <div class="header-main">
-        <div class="logo">Виктория Консалт</div>
+    
+      <!-- Новая строка: логотип и контакты (во всю ширину) -->
+      <div class="header-top">
+        <div class="logo">
+          <img src="assets/image-132183f4-a90c-4bb2-bf58-57313ca3ff13.png" alt="Виктория Консалт">
+        </div>
         <div class="header-contacts">
-          <div><span>Тел:</span> 8 (812) 207 1376</div>
-          <div><span>Email:</span> info@vicons.ru</div>
+          <div>Тел: 8 (812) 207 1376</div>
+          <div>Email: info@vicons.ru</div>
         </div>
         <button class="menu-toggle" aria-expanded="false" aria-controls="primary-menu">Меню</button>
-        <nav class="main-menu" id="primary-menu">
-          <ul class="menu">
-            <li class="menu-item"><a href="index.html#home">Главная</a></li>
-            <li class="menu-item menu-item-has-children">
-              <a href="index.html#about">О компании</a>
-              <ul class="sub-menu">
-                <li class="menu-item"><a href="index.html#mission">Миссия и ценности</a></li>
-                <li class="menu-item"><a href="index.html#team">Команда экспертов</a></li>
-                <li class="menu-item"><a href="index.html#partners">Наши партнёры</a></li>
-                <li class="menu-item"><a href="index.html#reviews">Отзывы клиентов</a></li>
-                <li class="menu-item"><a href="index.html#licenses">Сертификаты и лицензии</a></li>
-              </ul>
-            </li>
-            <li class="menu-item menu-item-has-children">
-              <a href="index.html#services">Услуги</a>
-              <ul class="sub-menu">
-                <li class="menu-item"><a href="service-buhgalterskij-autsorsing.html">Бухгалтерский аутсорсинг</a></li>
-                <li class="menu-item"><a href="service-kadrovy-uchet.html">Кадровый учёт</a></li>
-                <li class="menu-item"><a href="service-finansovy-konsalting.html">Финансовый консалтинг</a></li>
-                <li class="menu-item"><a href="service-yuridicheskie-uslugi.html">Юридические услуги</a></li>
-                <li class="menu-item"><a href="service-krizis-menedzhment.html">Кризис-менеджмент</a></li>
-              </ul>
-            </li>
-            <li class="menu-item"><a href="index.html#cases">Кейсы (Реализованные проекты)</a></li>
-            <li class="menu-item menu-item-has-children">
-              <a href="index.html#blog">Блог / Публикации</a>
-              <ul class="sub-menu">
-                <li class="menu-item"><a href="index.html#articles">Статьи</a></li>
-                <li class="menu-item"><a href="index.html#news">Новости компании</a></li>
-                <li class="menu-item"><a href="index.html#video">Полезные видео</a></li>
-              </ul>
-            </li>
-            <li class="menu-item"><a href="index.html#contacts">Контакты</a></li>
-          </ul>
-        </nav>
       </div>
+    
+      <!-- Навигация (меню) – теперь отдельно, под верхним блоком -->
+      <nav class="main-menu" id="primary-menu">
+        <ul class="menu">
+          <li class="menu-item"><a href="#home">Главная</a></li>
+          
+          <li class="menu-item menu-item-has-children">
+            <a href="#about">О компании</a>
+            <ul class="sub-menu">
+              <li class="menu-item"><a href="#mission">Миссия и ценности</a></li>
+              <li class="menu-item"><a href="#team">Команда экспертов</a></li>
+              <li class="menu-item"><a href="#partners">Наши партнёры</a></li>
+              <li class="menu-item"><a href="#reviews">Отзывы клиентов</a></li>
+              <li class="menu-item"><a href="#licenses">Сертификаты и лицензии</a></li>
+            </ul>
+          </li>
+          
+          <li class="menu-item menu-item-has-children">
+            <a href="#services">Услуги</a>
+            <ul class="sub-menu">
+              <li class="menu-item"><a href="service-buhgalterskij-autsorsing.html">Бухгалтерский аутсорсинг</a></li>
+              <li class="menu-item"><a href="service-kadrovy-uchet.html">Кадровый учёт</a></li>
+              <li class="menu-item"><a href="service-finansovy-konsalting.html">Финансовый консалтинг</a></li>
+              <li class="menu-item"><a href="service-yuridicheskie-uslugi.html">Юридические услуги</a></li>
+              <li class="menu-item"><a href="service-krizis-menedzhment.html">Кризис-менеджмент</a></li>
+            </ul>
+          </li>
+          
+          <li class="menu-item"><a href="#cases">Кейсы (Реализованные проекты)</a></li>
+          
+          <li class="menu-item menu-item-has-children">
+            <a href="#blog">Блог / Публикации</a>
+            <ul class="sub-menu">
+              <li class="menu-item"><a href="#articles">Статьи</a></li>
+              <li class="menu-item"><a href="#news">Новости компании</a></li>
+              <li class="menu-item"><a href="#video">Полезные видео</a></li>
+            </ul>
+          </li>
+          
+          <li class="menu-item menu-item-has-children">
+            <a href="#contacts">Контакты</a>
+            <ul class="sub-menu">
+              <li class="menu-item"><a href="#address">Адрес и схема проезда</a></li>
+              <li class="menu-item"><a href="#details">Реквизиты компании</a></li>
+              <li class="menu-item"><a href="#feedback">Обратная связь</a></li>
+              <li class="menu-item"><a href="#phones">Телефон, e-mail, мессенджеры</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
     </header>
 
-    <section class="hero-service">
-      <p class="hero-pretitle">Кризис-менеджмент</p>
-      <h1>Помощь бизнесу в сложных финансовых ситуациях</h1>
-      <p>
-        Анализируем текущую ситуацию, находим причины кассовых разрывов и разрабатываем план действий,
-        чтобы стабилизировать бизнес и вернуть ему управляемость.
-      </p>
+    <section class="hero" id="home">
+      <video class="hero-video" autoplay muted loop playsinline>
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+      </video>
+      <div class="hero-overlay">
+        <p class="hero-pretitle">20 лет опыта</p>
+        <h1>Бухгалтерское ведение и обслуживание малого и среднего бизнеса</h1>
+        <p>Полный комплекс услуг: бухгалтерский аутсорсинг, кадровый учет, юридическая поддержка, кризис-менеджмент.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#services">Оставить заявку</a>
+          <a class="btn ghost" href="#cases">Посмотреть кейсы</a>
+        </div>
+      </div>
     </section>
 
-    <section class="service-detail">
-      <h2>Когда нужен кризис-менеджмент</h2>
-      <p>
-        Учащаются просрочки по обязательствам, не хватает денег на налоги и зарплату, кредиты «давят»,
-        а владельцу сложно видеть картину целиком — всё это поводы привлечь внешнюю команду.
-      </p>
+    <section class="services" id="services">
+      <div class="section-header">
+        <h2>Наши услуги</h2>
+        <p>Экспертная команда бухгалтеров, юристов и кризис-менеджеров ведет клиентов по всей России.</p>
+      </div>
+      <div class="service-grid">
+        <article>
+          <h3><a href="service-buhgalterskij-autsorsing.html">Бухгалтерский аутсорсинг</a></h3>
+          <p>Ведение учета, сдача отчетности и консультации для ИП и ООО.</p>
+        </article>
+        <article>
+          <h3><a href="service-kadrovy-uchet.html">Кадровый учёт</a></h3>
+          <p>Документооборот, расчеты и аудит персонала.</p>
+        </article>
+        <article>
+          <h3><a href="service-finansovy-konsalting.html">Финансовый консалтинг</a></h3>
+          <p>Управленческая отчетность, финансовое планирование, привлечение инвестиций.</p>
+        </article>
+        <article>
+          <h3><a href="service-yuridicheskie-uslugi.html">Юридические услуги</a></h3>
+          <p>Сопровождение сделок, споры, защита интересов бизнеса.</p>
+        </article>
+        <article>
+          <h3><a href="service-krizis-menedzhment.html">Кризис-менеджмент</a></h3>
+          <p>Устранение кассовых разрывов, реструктуризация, сопровождение банкротств.</p>
+        </article>
+      </div>
+    </section>
 
-      <h3>Что мы делаем</h3>
-      <ul>
-        <li>проводим экспресс-анализ финансовой ситуации и долговой нагрузки;</li>
-        <li>составляем антикризисный план действий и сценарии развития;</li>
-        <li>помогаем выстроить переговоры с банками и ключевыми кредиторами;</li>
-        <li>сопровождаем реструктуризацию задолженности;</li>
-        <li>при необходимости — работаем совместно с юристами по процедурам банкротства.</li>
-      </ul>
+    <section class="stats" aria-label="Почему выбирают нас">
+      <div class="stat-card">
+        <strong>60+</strong>
+        <span>Активных клиентов</span>
+      </div>
+      <div class="stat-card">
+        <strong>₽1 000 000</strong>
+        <span>Страхование ответственности</span>
+      </div>
+      <div class="stat-card">
+        <strong>20 лет</strong>
+        <span>на рынке</span>
+      </div>
+      <div class="stat-card">
+        <strong>2016</strong>
+        <span>с 2016 года с товарным знаком</span>
+      </div>
+    </section>
 
-      <h3>Цель нашей работы</h3>
-      <p>
-        Максимально сохранить работающий бизнес, сотрудников и репутацию владельца,
-        создать понятный и реалистичный план выхода из кризиса и сопровождать его выполнение.
-      </p>
+    <section class="story">
+      <div class="story-text">
+        <h2>Вас приветствует консалтинговое агентство Виктория Консалт</h2>
+        <p>Комплексный подход и доступные технологии позволяют вести ваш бизнес из любой точки мира.</p>
+      </div>
+      <div class="story-image">
+        <img src="https://vicons.ru/wp-content/uploads/2026/02/5262842093623777202.jpg" alt="Команда Виктория Консалт">
+      </div>
     </section>
 
     <section class="cta" id="contacts">
       <div>
-        <h2>Нужен план антикризисных действий?</h2>
-        <p>Напишите нам — обсудим ситуацию конфиденциально и без обязательств.</p>
+        <h2>Остались вопросы?</h2>
+        <p>Заполните форму, и мы свяжемся с вами в течение рабочего дня.</p>
       </div>
       <form class="contact-form" action="https://formsubmit.co/info@vicons.ru" method="POST">
-        <input type="hidden" name="_subject" value="Заявка: Кризис-менеджмент">
+        <input type="hidden" name="_subject" value="Новая заявка с сайта">
         <input type="text" name="name" placeholder="Ваше имя" required>
         <input type="tel" name="phone" placeholder="Ваш номер телефона" required>
         <button type="submit" class="btn primary">Отправить</button>
       </form>
     </section>
 
+    <section class="articles" id="blog">
+      <div class="section-header">
+        <h2>Статьи</h2>
+        <p>Аналитика, инструкции и кейсы для предпринимателей.</p>
+      </div>
+      <div class="article-grid">
+        <article>
+          <img src="https://vicons.ru/wp-content/uploads/2021/11/9-350x250.jpg" alt="Акция">
+          <h3><a href="#">Мы проводим акцию</a></h3>
+          <p>Приведи друга — получи скидку, новые клиенты до 01.12.</p>
+        </article>
+        <article>
+          <img src="https://vicons.ru/wp-content/uploads/2021/09/oborotnue-sredstva-350x250.jpg" alt="Оборотные средства">
+          <h3><a href="#">Оборотные средства</a></h3>
+          <p>Что нужно знать про расчетные счета и ликвидность.</p>
+        </article>
+        <article>
+          <img src="https://vicons.ru/wp-content/uploads/2021/09/svoy-biznes-350x250.jpg" alt="Начать бизнес">
+          <h3><a href="#">Начать свой бизнес</a></h3>
+          <p>Наши советы, чтобы старт стал безопасным и прибыльным.</p>
+        </article>
+        <article>
+          <img src="https://vicons.ru/wp-content/uploads/2021/03/proverka-biznesa-1-350x250.jpg" alt="Факты">
+          <h3><a href="#">9 интересных фактов</a></h3>
+          <p>Удивительные истории из мира бухгалтерии.</p>
+        </article>
+      </div>
+    </section>
+
     <footer class="site-footer">
       <div class="footer-grid">
         <div>
-          <div class="logo">Виктория Консалт</div>
+          <div class="logo">
+            <img src="assets/image-132183f4-a90c-4bb2-bf58-57313ca3ff13.png" alt="Виктория Консалт">
+          </div>
           <p>Комплекс бизнес-поддержки с 2006 года.</p>
         </div>
         <div>
@@ -292,12 +363,12 @@
       <div class="copyright">Copyright © 2016-2026 Все права защищены.</div>
     </footer>
   </div>
-
   <script>
+    // JavaScript для мобильного меню
     document.addEventListener('DOMContentLoaded', function() {
       const menuToggle = document.querySelector('.menu-toggle');
       const mainMenu = document.querySelector('.main-menu');
-
+      
       if (menuToggle && mainMenu) {
         menuToggle.addEventListener('click', function() {
           const expanded = this.getAttribute('aria-expanded') === 'true' ? false : true;
@@ -305,12 +376,13 @@
           mainMenu.classList.toggle('menu-open');
         });
       }
-
+      
+      // Обработка кликов по пунктам с подменю на мобильных устройствах
       const menuItems = document.querySelectorAll('.menu-item-has-children');
-
+      
       menuItems.forEach(item => {
         const link = item.querySelector('a');
-
+        
         if (window.innerWidth <= 768) {
           link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -318,7 +390,8 @@
           });
         }
       });
-
+      
+      // Обновление обработчиков при изменении размера окна
       window.addEventListener('resize', function() {
         if (window.innerWidth > 768) {
           menuItems.forEach(item => {
@@ -330,4 +403,3 @@
   </script>
 </body>
 </html>
-
