@@ -292,26 +292,26 @@
         <p>Экспертная команда бухгалтеров, юристов и кризис-менеджеров ведет клиентов по всей России.</p>
       </div>
       <div class="service-grid">
-        <article>
-          <h3><a href="service-buhgalterskij-autsorsing.html">Бухгалтерский аутсорсинг</a></h3>
+        <a class="service-card" href="service-buhgalterskij-autsorsing.html">
+          <h3>Бухгалтерский аутсорсинг</h3>
           <p>Ведение учета, сдача отчетности и консультации для ИП и ООО.</p>
-        </article>
-        <article>
-          <h3><a href="service-kadrovy-uchet.html">Кадровый учёт</a></h3>
+        </a>
+        <a class="service-card" href="service-kadrovy-uchet.html">
+          <h3>Кадровый учёт</h3>
           <p>Документооборот, расчеты и аудит персонала.</p>
-        </article>
-        <article>
-          <h3><a href="service-finansovy-konsalting.html">Финансовый консалтинг</a></h3>
+        </a>
+        <a class="service-card" href="service-finansovy-konsalting.html">
+          <h3>Финансовый консалтинг</h3>
           <p>Управленческая отчетность, финансовое планирование, привлечение инвестиций.</p>
-        </article>
-        <article>
-          <h3><a href="service-yuridicheskie-uslugi.html">Юридические услуги</a></h3>
+        </a>
+        <a class="service-card" href="service-yuridicheskie-uslugi.html">
+          <h3>Юридические услуги</h3>
           <p>Сопровождение сделок, споры, защита интересов бизнеса.</p>
-        </article>
-        <article>
-          <h3><a href="service-krizis-menedzhment.html">Кризис-менеджмент</a></h3>
-          <p>Устранение кассовых разрывов, реструктуризация, сопровождение банкротств.</p>
-        </article>
+        </a>
+        <a class="service-card" href="service-krizis-menedzhment.html">
+          <h3>Кризис-менеджмент</h3>
+          <p>Устранение кассовых разрывов, реструктуризация и защита при проверках.</p>
+        </a>
       </div>
     </section>
 
@@ -334,23 +334,67 @@
       </div>
     </section>
 
-    <section class="story">
+    <section class="story" id="about">
       <div class="story-text">
         <h2>Вас приветствует консалтинговое агентство Виктория Консалт</h2>
         <p>Комплексный подход и доступные технологии позволяют вести ваш бизнес из любой точки мира.</p>
+        <div class="anchor-card-grid">
+          <div class="anchor-card" id="mission">
+            <h3>Миссия и ценности</h3>
+            <p>Снижаем юридические и налоговые риски клиентов, предлагая понятные и рабочие решения.</p>
+          </div>
+          <div class="anchor-card" id="team">
+            <h3>Команда экспертов</h3>
+            <p>Бухгалтеры, юристы и финансовые консультанты с практикой в сопровождении бизнеса.</p>
+          </div>
+          <div class="anchor-card" id="partners">
+            <h3>Партнёры</h3>
+            <p>Работаем с банками, оценщиками, нотариусами и смежными профильными специалистами.</p>
+          </div>
+          <div class="anchor-card" id="reviews">
+            <h3>Отзывы клиентов</h3>
+            <p>Клиенты отмечают скорость реакции, прозрачные расчёты и точность в документах.</p>
+          </div>
+          <div class="anchor-card" id="licenses">
+            <h3>Сертификаты и лицензии</h3>
+            <p>По запросу предоставляем подтверждающие документы по специалистам и направлениям работы.</p>
+          </div>
+        </div>
       </div>
       <div class="story-image">
         <img src="https://vicons.ru/wp-content/uploads/2026/02/5262842093623777202.jpg" alt="Команда Виктория Консалт">
       </div>
     </section>
 
+    <section class="cases" id="cases">
+      <div class="section-header">
+        <h2>Кейсы</h2>
+        <p>Реализованные проекты и практические результаты для клиентов.</p>
+      </div>
+      <div class="anchor-card-grid">
+        <div class="anchor-card">
+          <h3>Налоговый спор</h3>
+          <p>Оспорили доначисления и снизили финансовую нагрузку клиента на 80%.</p>
+        </div>
+        <div class="anchor-card">
+          <h3>Кризис и долги</h3>
+          <p>Провели реструктуризацию обязательств и сохранили операционную деятельность компании.</p>
+        </div>
+        <div class="anchor-card">
+          <h3>Кадровый аудит</h3>
+          <p>Исправили нарушения кадрового учета и сняли риски штрафов трудовой инспекции.</p>
+        </div>
+      </div>
+    </section>
+
     <section class="cta" id="contacts">
       <div>
         <h2>Остались вопросы?</h2>
-        <p>Заполните форму, и мы свяжемся с вами в течение рабочего дня.</p>
+        <p>Заполните форму, и мы свяжемся с вами в течение рабочего дня. Первая консультация 15-20 минут бесплатно.</p>
       </div>
-      <form class="contact-form" action="https://formsubmit.co/info@vicons.ru" method="POST">
+      <form class="contact-form" id="feedback" action="https://formsubmit.co/info@vicons.ru" method="POST">
         <input type="hidden" name="_subject" value="Новая заявка с сайта">
+        <input type="hidden" name="_next" value="thank-you.html?source=main">
         <input type="text" name="name" placeholder="Ваше имя" required>
         <input type="tel" name="phone" placeholder="Ваш номер телефона" required>
         <button type="submit" class="btn primary">Отправить</button>
@@ -362,27 +406,34 @@
         <h2>Статьи</h2>
         <p>Аналитика, инструкции и кейсы для предпринимателей.</p>
       </div>
-      <div class="article-grid">
+      <div class="article-grid" id="articles">
         <article>
-          <img src="https://vicons.ru/wp-content/uploads/2021/11/9-350x250.jpg" alt="Акция">
-          <h3><a href="#">Мы проводим акцию</a></h3>
-          <p>Приведи друга — получи скидку, новые клиенты до 01.12.</p>
+          <img src="https://vicons.ru/wp-content/uploads/2021/03/proverka-biznesa-1-350x250.jpg" alt="Проверки ФНС">
+          <h3><a href="article-fns-proverki.html">Проверки ФНС: кто в зоне риска и как действовать</a></h3>
+          <p>Критерии риска, как ФНС выявляет неучтённые доходы и как отвечать на запросы.</p>
         </article>
         <article>
-          <img src="https://vicons.ru/wp-content/uploads/2021/09/oborotnue-sredstva-350x250.jpg" alt="Оборотные средства">
-          <h3><a href="#">Оборотные средства</a></h3>
-          <p>Что нужно знать про расчетные счета и ликвидность.</p>
+          <img src="https://vicons.ru/wp-content/uploads/2021/09/oborotnue-sredstva-350x250.jpg" alt="Проверка контрагента">
+          <h3><a href="article-proverka-kontragenta.html">Как проверить контрагента перед сделкой</a></h3>
+          <p>Экспресс и углублённая проверка, судебные и финансовые риски, признаки неблагонадёжности.</p>
         </article>
         <article>
-          <img src="https://vicons.ru/wp-content/uploads/2021/09/svoy-biznes-350x250.jpg" alt="Начать бизнес">
-          <h3><a href="#">Начать свой бизнес</a></h3>
-          <p>Наши советы, чтобы старт стал безопасным и прибыльным.</p>
+          <img src="https://vicons.ru/wp-content/uploads/2021/09/svoy-biznes-350x250.jpg" alt="Закрыть фирму с долгами">
+          <h3><a href="article-zakryt-firmu-s-dolgami.html">Как закрыть фирму с долгами</a></h3>
+          <p>Законные сценарии ликвидации, риски для собственников и когда нужна процедура банкротства.</p>
         </article>
-        <article>
-          <img src="https://vicons.ru/wp-content/uploads/2021/03/proverka-biznesa-1-350x250.jpg" alt="Факты">
-          <h3><a href="#">9 интересных фактов</a></h3>
-          <p>Удивительные истории из мира бухгалтерии.</p>
-        </article>
+      </div>
+      <div class="anchor-card-grid" id="news">
+        <div class="anchor-card">
+          <h3>Новости компании</h3>
+          <p>Публикуем обновления по услугам, изменениям в законодательстве и новым кейсам.</p>
+        </div>
+      </div>
+      <div class="anchor-card-grid" id="video">
+        <div class="anchor-card">
+          <h3>Полезные видео</h3>
+          <p>Подборка коротких видеоразборов по налоговым проверкам и юридической защите бизнеса.</p>
+        </div>
       </div>
     </section>
 
@@ -406,10 +457,10 @@
         </div>
         <div>
           <h4>Контакты</h4>
-          <ul>
-            <li>Адрес: л. Маршала Тухачевского д.22 оф.412</li>
+          <ul id="details">
+            <li id="address">Адрес: л. Маршала Тухачевского д.22 оф.412</li>
             <li>Почта: info@vicons.ru</li>
-            <li>Телефон: 8 (812) 207-13-76</li>
+            <li id="phones">Телефон: 8 (812) 207-13-76</li>
           </ul>
         </div>
         <div>
@@ -423,6 +474,7 @@
       <div class="copyright">Copyright © 2016-2026 Все права защищены.</div>
     </footer>
   </div>
+  <a class="floating-contact" href="#contacts">Бесплатная консультация</a>
   <script>
     // JavaScript для мобильного меню
     document.addEventListener('DOMContentLoaded', function() {
