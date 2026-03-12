@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Спасибо за заявку</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/layout.css">
+</head>
+<body>
+  <div class="page-wrapper" style="display:flex;align-items:center;justify-content:center;padding:2rem;min-height:100vh;">
+    <div class="anchor-card" style="max-width:620px;padding:2rem;">
+      <h1 style="margin-top:0;">Спасибо! Заявка отправлена</h1>
+      <p>Мы получили ваши контакты и свяжемся с вами в ближайшее рабочее время.</p>
+      <p><a class="btn primary" href="index.html">Вернуться на главную</a></p>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var source = params.get('source') || 'unknown';
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'lead_form_submit',
+        source: source,
+        page: 'thank-you'
+      });
+    })();
+  </script>
+</body>
+</html>
+
