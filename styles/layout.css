@@ -1,5 +1,6 @@
 body {
   font-size: 16px;
+  overflow-x: hidden;
 }
 .site-header {
   border-bottom: 1px solid #ddd;
@@ -79,6 +80,49 @@ body {
   margin-top: 1.5rem;
   display: flex;
   gap: 1rem;
+}
+.hero-service {
+  position: relative;
+  padding: 4rem 2rem 3rem;
+  background: linear-gradient(135deg, #090821 0%, #1c1540 50%, #3a2359 100%);
+  color: #fff;
+}
+.hero-service h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(2.1rem, 3vw, 2.8rem);
+  margin-bottom: 1rem;
+}
+.hero-service p {
+  max-width: 720px;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+.service-detail {
+  padding: 3rem 2rem 4rem;
+  max-width: 860px;
+  margin: 0 auto;
+  background: #fff;
+}
+.service-detail h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.8rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+.service-detail h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.3rem;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+.service-detail p {
+  line-height: 1.7;
+  color: #4a4a4a;
+  margin: 0.5rem 0;
+}
+.service-detail ul {
+  padding-left: 1.2rem;
+  color: #4a4a4a;
 }
 .services {
   padding: 4rem 2rem;
@@ -328,16 +372,100 @@ body {
 }
 
 @media (max-width: 768px) {
+  .top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+    padding: 0.6rem 1rem;
+    line-height: 1.4;
+  }
   .header-main {
     flex-direction: column;
-    gap: 1rem;
-    text-align: center;
+    align-items: flex-start;
+    gap: 0.75rem;
+    text-align: left;
+    padding: 1rem;
+  }
+  .header-contacts {
+    text-align: left;
+  }
+  .logo img {
+    max-height: 42px;
+  }
+  .hero {
+    height: auto;
+    min-height: 58vh;
+  }
+  .hero-overlay {
+    max-width: none;
+    padding: 3rem 1rem 2.5rem;
+  }
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hero-actions .btn {
+    width: 100%;
+  }
+  .services,
+  .story,
+  .articles,
+  .cases,
+  .cta {
+    padding: 2rem 1rem;
+  }
+  .stats {
+    padding: 1rem;
+  }
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
+  .service-detail {
+    padding: 2rem 1rem;
+  }
+  .price-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    font-size: 0.92rem;
+  }
+  .price-table tbody,
+  .price-table thead {
+    white-space: normal;
+  }
+  .article-content {
+    padding: 1.25rem 1rem;
+  }
+  .cta {
+    flex-direction: column;
+  }
+  .contact-form input,
+  .contact-form button,
+  .contact-form .btn {
+    width: 100%;
+  }
+  .floating-contact {
+    right: 12px;
+    bottom: 12px;
+    padding: 0.75rem 0.95rem;
   }
   .menu-toggle {
     display: inline-flex;
   }
   .article-cover {
     height: 220px;
+  }
+}
+
+@media (max-width: 420px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .section-header h2 {
+    font-size: 1.6rem;
+  }
+  .stat-card strong {
+    font-size: 1.3rem;
   }
 }
 
