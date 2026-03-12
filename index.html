@@ -6,7 +6,7 @@
   <title>Виктория Консалт</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2&.&.&&.&.&&.&.&.family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/layout.css">
   <style>
     :root {
@@ -193,7 +193,7 @@
       }
       
       .main-menu .menu-item-has-children.active > a::after {
-        content: '&.&.&&.&.&&.&.&.';
+        content: '?';
       }
     }
   </style>
@@ -389,15 +389,16 @@
 
     <section class="cta" id="contacts">
       <div>
-        <h2>Остались вопросы&.&.&&.&.&&.&.&.</h2>
+        <h2>Остались вопросы?</h2>
         <p>Заполните форму, и мы свяжемся с вами в течение рабочего дня. Первая консультация 15-20 минут бесплатно.</p>
       </div>
       <form class="contact-form" id="feedback" action="https://formsubmit.co/info@vicons.ru" method="POST">
         <input type="hidden" name="_subject" value="Новая заявка с сайта">
-        <input type="hidden" name="_next" value="thank-you.html&.&.&&.&.&&.&.&.source=main">
+        <input type="hidden" name="_next" value="thank-you.html?source=main">
         <input type="text" name="name" placeholder="Ваше имя" required>
         <input type="tel" name="phone" placeholder="Ваш номер телефона" required>
         <button type="submit" class="btn primary">Отправить</button>
+              <input type="hidden" name="_captcha" value="false">
       </form>
     </section>
 
@@ -467,7 +468,7 @@
           <h4>Мы в соцсетях</h4>
           <div class="socials">
             <a href="https://vk.com/viconsalt">VK</a>
-            <a href="https://www.instagram.com/p/CT4LVadsFUZ/&.&.&&.&.&&.&.&.utm_medium=copy_link">Instagram</a>
+            <a href="https://www.instagram.com/p/CT4LVadsFUZ/?utm_medium=copy_link">Instagram</a>
           </div>
         </div>
       </div>
@@ -483,7 +484,7 @@
       
       if (menuToggle && mainMenu) {
         menuToggle.addEventListener('click', function() {
-          const expanded = this.getAttribute('aria-expanded') === 'true' &.&.&&.&.&&.&.&. false : true;
+          const expanded = this.getAttribute('aria-expanded') === 'true' ? false : true;
           this.setAttribute('aria-expanded', expanded);
           mainMenu.classList.toggle('menu-open');
         });
