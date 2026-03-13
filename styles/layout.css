@@ -4,10 +4,21 @@
 }
 
 body {
+  font-family: "Calibri Light", Calibri, "Segoe UI", Arial, sans-serif;
+  font-weight: 300;
   font-size: 16px;
   overflow-x: hidden;
   margin: 0;
   background-color: #aca084;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Montserrat', sans-serif;
 }
 .site-header {
   border-bottom: 1px solid #ddd;
@@ -310,6 +321,24 @@ body {
 }
 .site-footer ul li a:hover {
   color: #c79d63;
+}
+.contact-messengers {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: 0.6rem;
+}
+.contact-messenger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+.contact-messenger img {
+  width: 24px;
+  height: 24px;
+  display: block;
 }
 .socials {
   display: flex;
