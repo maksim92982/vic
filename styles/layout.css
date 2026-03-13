@@ -1,23 +1,38 @@
+.page-wrapper {
+  min-height: 100vh;
+  background-color: #aca084;
+}
+
 body {
   font-size: 16px;
   overflow-x: hidden;
+  margin: 0;
+  background-color: #aca084;
 }
 .site-header {
   border-bottom: 1px solid #ddd;
   background: #fff;
 }
-.top-bar {
+.header_top {
+  background: linear-gradient(180deg, #14345b, #0b1c36);
+  color: #fefdf6;
+  padding: 0.25rem 2rem 0;
+}
+.header_top .top-bar {
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 0;
   font-size: 0.9rem;
-  color: #5b5b5b;
+  color: #f0f0f0;
 }
-.header-main {
+.header_top .header-main {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem;
+  padding: 0.5rem 0 0.75rem;
+}
+.header_top .header-main .logo img {
+  max-height: 60px;
 }
 .logo {
   font-family: 'Montserrat', sans-serif;
