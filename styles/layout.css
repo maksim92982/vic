@@ -308,15 +308,19 @@ h6 {
   border-radius: 12px;
   padding: 1rem 1.1rem;
   box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  width: 100%;
+  text-align: center;
 }
 .story-side-article h3 {
   margin-top: 0;
   margin-bottom: 0.7rem;
   font-size: 1.2rem;
+  text-align: center;
 }
 .story-side-article p {
   margin: 0 0 0.75rem;
   line-height: 1.55;
+  text-align: center;
 }
 .story-side-item {
   background: #fff;
