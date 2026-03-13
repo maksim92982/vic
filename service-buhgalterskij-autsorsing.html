@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="styles/layout.css">
 </head>
 <body>
+  <div class="page-wrapper">
+    <header class="site-header">
       <div class="header_top clearfix affix-top">
         <div class="header-item header-logo">
           <img src="assets/image-132183f4-a90c-4bb2-bf58-57313ca3ff13.png" alt="Виктория Консалт">
@@ -92,6 +94,60 @@
           </li>
         </ul>
       </nav>
+    </header>
+
+    <section class="hero-service">
+      <p class="hero-pretitle">Бухгалтерский аутсорсинг</p>
+      <h1>Полное бухгалтерское сопровождение бизнеса</h1>
+      <p>Доверьте бухгалтерию профессионалам и занимайтесь развитием компании, пока мы готовим отчётность, считаем налоги и взаимодействуем с контролирующими органами.</p>
+    </section>
+
+    <section class="service-detail">
+      <h2>Стоимость услуг</h2>
+      <table class="price-table">
+        <thead><tr><th>Категория</th><th>Цена</th></tr></thead>
+        <tbody>
+          <tr><td>ИП без НДС</td><td>от 6 000 руб./мес</td></tr>
+          <tr><td>ИП с НДС</td><td>от 15 000 руб./мес</td></tr>
+          <tr><td>ООО на УСН без НДС</td><td>от 12 000 руб./мес</td></tr>
+          <tr><td>ООО на УСН с НДС</td><td>от 18 000 руб./мес</td></tr>
+          <tr><td>ООО на ОСНО</td><td>от 25 000 руб./мес</td></tr>
+        </tbody>
+      </table>
+      <h3>Что входит в обслуживание</h3>
+      <ul>
+        <li>Расчёт налогов и подготовка деклараций.</li>
+        <li>Сдача отчётности в ФНС, СФР, Росстат.</li>
+        <li>Контроль расчётного счёта и кассовых операций.</li>
+        <li>Первичная документация: счета, акты, накладные.</li>
+        <li>Консультирование по налоговым вопросам.</li>
+      </ul>
+      <h3>Дополнительные услуги</h3>
+      <ul>
+        <li>Восстановление учёта — индивидуально.</li>
+        <li>Налоговое планирование и оптимизация — индивидуально.</li>
+        <li>Подготовка отчётности разово — от 3 000 руб.</li>
+        <li>Консультации бухгалтера — от 1 500 руб./час.</li>
+      </ul>
+    </section>
+
+    <section class="cta" id="contacts">
+      <div>
+        <h2>Нужен надёжный бухгалтер?</h2>
+        <p>Оставьте контакты. Первая консультация 15-20 минут бесплатно.</p>
+      </div>
+      <form class="contact-form" action="https://formsubmit.co/info@vicons.ru" method="POST">
+        <input type="hidden" name="_subject" value="Заявка: Бухгалтерский аутсорсинг">
+        <input type="hidden" name="_next" value="thank-you.html?source=service-buh">
+        <input type="text" name="name" placeholder="Ваше имя" required>
+        <input type="tel" name="phone" placeholder="Ваш номер телефона" required>
+        <button type="submit" class="btn primary">Отправить</button>
+              <input type="hidden" name="_captcha" value="false">
+      </form>
+    </section>
+
+    <footer class="site-footer"><div class="copyright">Copyright © 2016-2026 Все права защищены.</div></footer>
+  </div>
   <a class="floating-contact" href="#contacts">Бесплатная консультация</a>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
