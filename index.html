@@ -117,6 +117,7 @@
       top: 100%;
       left: 0;
       min-width: 250px;
+      max-width: min(320px, calc(100vw - 24px));
       background: #fff;
       box-shadow: 0 5px 20px rgba(0,0,0,0.1);
       border-radius: 4px;
@@ -125,6 +126,11 @@
       transform: translateY(10px);
       transition: all 0.3s ease;
       z-index: 1000;
+    }
+
+    .main-menu .sub-menu.align-right {
+      left: auto;
+      right: 0;
     }
     
     .main-menu .menu-item-has-children:hover .sub-menu {
@@ -140,6 +146,7 @@
     .main-menu .sub-menu a {
       padding: 0.75rem 1.5rem;
       border-bottom: 1px solid #f0f0f0;
+      overflow-wrap: anywhere;
     }
     
     .main-menu .sub-menu .menu-item:last-child a {
@@ -217,7 +224,7 @@
           <span class="icon"><img src="assets/icon-phone.svg" alt="Телефон"></span>
           <div>
             
-            <div>8 (812) 207-13-76</div>
+            <div>   (812) 207-13-76</div>
             <div>+7 (911) 920-01-72</div>
           </div>
         </div>  
@@ -464,10 +471,10 @@
         <div>
           <h4>Контакты</h4>
           <ul id="details">
-            <li id="address">Адрес: л. Маршала Тухачевского д.22 оф.412</li>
+            <li id="address">Адрес: ул. Маршала Тухачевского д.22 оф. 412</li>
             <li>Почта: info@vicons.ru</li>
-            <li id="phones">Телефон: 8 (812) 207-13-76</li>
-            <li id="phones">Телефон: +7 (911) 920-01-72</li>
+            <li id="phones">Телефоны:    (812) 207-13-76</li>
+            <li id="phones">          +7 (911) 920-01-72</li>
           </ul>
         </div>
         <div>
@@ -497,6 +504,38 @@
       
       // Обработка кликов по пунктам с подменю на мобильных устройствах
       const menuItems = document.querySelectorAll('.menu-item-has-children');
+      const subMenus = document.querySelectorAll('.main-menu .menu-item-has-children > .sub-menu');
+      const viewportGap = 12;
+
+      function fitSubMenuToViewport(subMenu) {
+        subMenu.classList.remove('align-right');
+        subMenu.style.left = '';
+        subMenu.style.right = '';
+
+        const defaultRect = subMenu.getBoundingClientRect();
+        if (defaultRect.right > window.innerWidth - viewportGap) {
+          subMenu.classList.add('align-right');
+        }
+
+        const alignedRect = subMenu.getBoundingClientRect();
+        if (alignedRect.left < viewportGap) {
+          subMenu.classList.remove('align-right');
+          subMenu.style.left = `${viewportGap - alignedRect.left}px`;
+        }
+      }
+
+      function updateDesktopSubMenus() {
+        if (window.innerWidth <= 768) {
+          subMenus.forEach((subMenu) => {
+            subMenu.classList.remove('align-right');
+            subMenu.style.left = '';
+            subMenu.style.right = '';
+          });
+          return;
+        }
+
+        subMenus.forEach((subMenu) => fitSubMenuToViewport(subMenu));
+      }
       
       menuItems.forEach(item => {
         const link = item.querySelector('a');
@@ -508,6 +547,17 @@
           });
         }
       });
+
+      menuItems.forEach((item) => {
+        item.addEventListener('mouseenter', () => {
+          if (window.innerWidth > 768) {
+            const subMenu = item.querySelector(':scope > .sub-menu');
+            if (subMenu) fitSubMenuToViewport(subMenu);
+          }
+        });
+      });
+
+      updateDesktopSubMenus();
       
       // Обновление обработчиков при изменении размера окна
       window.addEventListener('resize', function() {
@@ -516,9 +566,9 @@
             item.classList.remove('active');
           });
         }
+        updateDesktopSubMenus();
       });
     });
   </script>
 </body>
 </html>
-
