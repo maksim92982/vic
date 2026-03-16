@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru-RU">
 <head>
   <meta charset="UTF-8">
@@ -18,9 +18,6 @@
     * {
       box-sizing: border-box;
     }
-    .phone-number {
-  margin-left: -20px;
-}
 
     body {
       margin: 0;
@@ -162,142 +159,47 @@
       border-bottom: none;
     }
     
-   /* Стили для кнопки меню */
-.menu-toggle {
-  display: none; /* По умолчанию скрыта на десктопе */
-  background: #c79d63;
-  border: none;
-  color: #fff;
-  padding: 0.6rem 1rem;
-  border-radius: 999px;
-  font-weight: 600;
-  cursor: pointer;
-  font-size: 1rem;
-  border: 1px solid transparent;
-}
-
-/* Мобильное меню - обновленные стили */
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: inline-flex !important; /* Показываем кнопку на мобильных */
-    align-items: center;
-    justify-content: center;
-    margin-left: auto;
-  }
-  
-  .header_top {
-    position: relative;
-    z-index: 1001;
-  }
-  
-  .main-menu {
-    position: static;
-    padding: 0;
-    width: 100%;
-  }
-  
-  .main-menu .menu {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: #fff;
-    padding: 1rem;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    z-index: 1000;
-    width: 100%;
-    margin: 0;
-  }
-  
-  .main-menu.menu-open .menu {
-    display: flex !important;
-  }
-  
-  .main-menu .menu-item {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .main-menu .menu-item a {
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid #eee;
-    width: 100%;
-    display: block;
-    font-size: 1rem;
-  }
-  
-  .main-menu .menu-item:last-child a {
-    border-bottom: none;
-  }
-  
-  .main-menu .sub-menu {
-    position: static;
-    opacity: 1;
-    visibility: visible;
-    transform: none;
-    box-shadow: none;
-    padding-left: 1.5rem;
-    display: none;
-    width: 100%;
-    background: #f9f9f9;
-  }
-  
-  .main-menu .menu-item-has-children.active .sub-menu {
-    display: block;
-  }
-  
-  .main-menu .menu-item-has-children > a {
-    position: relative;
-    padding-right: 2.5rem;
-  }
-  
-  .main-menu .menu-item-has-children > a::after {
-    content: '+';
-    position: absolute;
-    right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.2rem;
-    font-weight: bold;
-  }
-  
-  .main-menu .menu-item-has-children.active > a::after {
-    content: '-';
-  }
-  
-  .main-menu .sub-menu a {
-    padding: 0.6rem 1rem;
-    font-size: 0.95rem;
-    border-bottom: 1px solid #e5e5e5;
-  }
-  
-  .main-menu .sub-menu .menu-item:last-child a {
-    border-bottom: none;
-  }
-}
-    /* Фикс для header на мобильных */
-@media (max-width: 768px) {
-  .site-header {
-    position: relative;
-    z-index: 100;
-  }
-  
-  .header_top {
-    flex-wrap: wrap;
-    padding: 0.5rem 1rem;
-  }
-  
-  .header-item.header-logo img {
-    max-height: 40px;
-  }
-  
-  .header-item.header-phone .phone-values div {
-    font-size: 0.9rem;
-  }
-}
+    /* Мобильное меню */
+    @media (max-width: 768px) {
+      .main-menu .menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #fff;
+        padding: 1rem;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      }
+      
+      .main-menu.menu-open .menu {
+        display: flex;
+      }
+      
+      .main-menu .sub-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        padding-left: 1.5rem;
+        display: none;
+      }
+      
+      .main-menu .menu-item-has-children.active .sub-menu {
+        display: block;
+      }
+      
+      .main-menu .menu-item-has-children > a::after {
+        content: '+';
+        font-size: 16px;
+      }
+      
+      .main-menu .menu-item-has-children.active > a::after {
+        content: '?';
+      }
+    }
   </style>
 </head>
 <body>
@@ -352,7 +254,7 @@
           </li>
           
           <li class="menu-item menu-item-has-children">
-            <a href="#services">Услуги</a>
+            <a href="#services">Услуги и цены</a>
             <ul class="sub-menu">
               <li class="menu-item"><a href="service-buhgalterskij-autsorsing.html">Бухгалтерский аутсорсинг</a></li>
               <li class="menu-item"><a href="service-kadrovy-uchet.html">Кадровый учёт</a></li>
@@ -454,12 +356,15 @@
       <div class="story-top">
         <div class="story-side-list" aria-label="О компании">
           <div class="story-side-article">
-            <h3>Виктория Консалт</h3>
-            <p>Бухгалтеры, юристы, кадровики и финансисты в одной команде. Чтобы ваш бизнес был защищён, а вы спали спокойно.</p>
-            <p>20 лет мы сопровождаем компании, которые не любят сюрпризов от налоговой, судов и трудовой инспекции. За это время налоговая система менялась не раз, но наши клиенты всегда встречали изменения во всеоружии.</p>
-            <p>Мы не работаем по шаблону. Подбираем решение под конкретную задачу, разбираемся в отраслевой специфике и не уходим в сторону, когда возникают проблемы.</p>
-            <p>Если вам нужна не просто отчётность, а системная защита бизнеса — давайте знакомиться.</p>
-           
+            <h3>Вас приветствует консалтинговое агентство ВИКТОРИЯ консалт.</h3>
+            <p>Мы компания мечта! Реализуем любую вашу мечту по построению доходного бизнеса.</p>
+            <p>Все еще по старинке ищите бухгалтера?! Жаль! Оглянитесь вокруг. Мир изменился до неузнаваемости. Ни один штатный бухгалтер не выдюжит той нагрузки, которую вы собираетесь на него возложить. Бухгалтерский и налоговый учет, кадровый учет, финансовые консультации, консультации по юридическим вопросам - вы считаете, что это все может один штатный бухгалтер?)</p>
+            <p>Сегодня нужен комплексный подход. Законодательство усложнилось. Фискалы работают отлично. Цена ошибки очень высока. Нас окружает мир высоких технологий.</p>
+            <p>Вам удобно ходить за покупками в универсальный магазин? А еще лучше все покупки делать не выходя из дома.</p>
+            <p>Вот мы и есть этот универсальный магазин, в который можно ходить на вставая с дивана. Мы одновременно - бухгалтер, экономит, юрист, кадровик, it-специалист.</p>
+            <p>Для успешного ведения бизнеса необходим комплексный подход. Вы умеете продавать - отлично. Продавайте. Мы обеспечим вас всем необходимым. Кадровик будет следить за вашими кадрами. Бухгалтер считать налоги и вести учет. Налоговый консультант рассчитает налоговую нагрузку, юрист проверит легитимность сделок, it-специалист - подключит и внедрит программный продукт. Вам нужен кассовый аппарат - пожалуйста - есть кассовый механик, нужно решить, где открыть расчетный счет - пожалуйста - мы уполномоченные агенты многих банков, у вас спор с налоговой - пожалуйста - есть профильный юрист. Остались вопросы - звоните 207-13-76 (Санкт-Петербург).</p>
+            <p>Для нас не помеха даже ваше месторасположение. Сегодняшние технологии позволяют нашим специалистам работать в любое время и в любом месте. Мы на связи с вами 24/7.</p>
+            <p>Мы работаем в Санкт-Петербурге и по все России.</p>
           </div>
         </div>
         <div class="story-image">
@@ -575,7 +480,7 @@
           <p>Комплекс бизнес-поддержки с 2006 года.</p>
         </div>
         <div>
-          <h4>Услуги</h4>
+          <h4>Услуги и цены</h4>
           <ul>
             <li><a href="service-buhgalterskij-autsorsing.html">Бухгалтерский аутсорсинг</a></li>
             <li><a href="service-kadrovy-uchet.html">Кадровый учёт</a></li>
@@ -589,8 +494,8 @@
           <ul id="details">
             <li id="address">Адрес: ул. Маршала Тухачевского д.22 оф. 412</li>
             <li>Почта: info@vicons.ru</li>
-            <li id="phones" class="phone-number">8 (812) 207-13-76    </li>
-            <li class="phone-number">+7 (911) 920-01-72    </li>
+            <li id="phones" class="phone-number">8 (812) 207-13-76</li>
+            <li class="phone-number">+7 (911) 920-01-72</li>
           </ul>
           <div class="contact-messengers" aria-label="Мессенджеры">
             <a class="contact-messenger" href="https://max.ru/+79119200172" target="_blank" rel="noopener noreferrer" aria-label="Написать в MAX">
@@ -693,4 +598,5 @@
   </script>
 </body>
 </html>
+
 
