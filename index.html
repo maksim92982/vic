@@ -84,6 +84,7 @@
       padding: 0 3rem;
       margin: 0 auto;
       box-sizing: border-box;
+      z-index: 2200;
     }
     
     .main-menu .menu {
@@ -161,6 +162,11 @@
     
     /* Мобильное меню */
     @media (max-width: 768px) {
+      .site-header {
+        position: relative;
+        z-index: 2200;
+      }
+
       .main-menu .menu {
         display: none;
         flex-direction: column;
@@ -171,10 +177,11 @@
         background: #fff;
         padding: 1rem;
         box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        z-index: 2300;
       }
       
       .main-menu.menu-open .menu {
-        display: flex;
+        display: flex !important;
       }
       
       .main-menu .sub-menu {
@@ -197,7 +204,7 @@
       }
       
       .main-menu .menu-item-has-children.active > a::after {
-        content: '?';
+        content: '-';
       }
     }
   </style>
@@ -519,12 +526,20 @@
     document.addEventListener('DOMContentLoaded', function() {
       const menuToggle = document.querySelector('.menu-toggle');
       const mainMenu = document.querySelector('.main-menu');
+      const menuList = document.querySelector('#primary-menu .menu');
       
       if (menuToggle && mainMenu) {
         menuToggle.addEventListener('click', function() {
           const expanded = this.getAttribute('aria-expanded') === 'true' ? false : true;
           this.setAttribute('aria-expanded', expanded);
-          mainMenu.classList.toggle('menu-open');
+          const isOpen = mainMenu.classList.toggle('menu-open');
+          // Fallback for mobile webviews where CSS state may not repaint correctly.
+          if (window.innerWidth <= 768) {
+            const fallbackMenuList = mainMenu.querySelector('.menu');
+            if (fallbackMenuList) {
+              fallbackMenuList.style.display = isOpen ? 'flex' : 'none';
+            }
+          }
         });
       }
       
@@ -546,7 +561,7 @@
         const alignedRect = subMenu.getBoundingClientRect();
         if (alignedRect.left < viewportGap) {
           subMenu.classList.remove('align-right');
-          subMenu.style.left = `${viewportGap - alignedRect.left}px`;
+          subMenu.style.left = (viewportGap - alignedRect.left) + 'px';
         }
       }
 
