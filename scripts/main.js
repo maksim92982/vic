@@ -35,3 +35,12 @@ if (menuToggle && mainMenu) {
     mainMenu.classList.toggle('open');
   });
 }
+
+const heroVideo = document.querySelector('.hero-video');
+if (heroVideo) {
+  const showVideo = () => heroVideo.classList.add('is-visible');
+  heroVideo.addEventListener('canplay', showVideo, { once: true });
+  heroVideo.addEventListener('playing', showVideo, { once: true });
+  heroVideo.addEventListener('canplaythrough', showVideo, { once: true });
+  heroVideo.load();
+}
