@@ -38,9 +38,25 @@ if (menuToggle && mainMenu) {
 
 const heroVideo = document.querySelector('.hero-video');
 if (heroVideo) {
-  const showVideo = () => heroVideo.classList.add('is-visible');
-  heroVideo.addEventListener('canplay', showVideo, { once: true });
-  heroVideo.addEventListener('playing', showVideo, { once: true });
-  heroVideo.addEventListener('canplaythrough', showVideo, { once: true });
+  const log = (msg) => console.log(`[hero-video] ${msg}`);
+  const showVideo = () => {
+    log('show-video triggered');
+    heroVideo.classList.add('is-visible');
+  };
+  ['canplay', 'loadeddata', 'playing', 'canplaythrough'].forEach((event) => {
+    heroVideo.addEventListener(
+      event,
+      () => {
+        log(`${event}, readyState=${heroVideo.readyState}`);
+        showVideo();
+      },
+      { once: true },
+    );
+  });
+  heroVideo.addEventListener('error', (event) => {
+    log(`error event code=${event?.target?.error?.code}`);
+  });
+  heroVideo.addEventListener('waiting', () => log('waiting for data'));
   heroVideo.load();
+  heroVideo.play().then(() => log('play resolved')).catch((err) => log(`play failed: ${err.message}`));
 }
