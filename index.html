@@ -601,16 +601,17 @@
       updateDesktopSubMenus();
       
       // Обновление обработчиков при изменении размера окна
-      window.addEventListener('resize', function() {
-        if (window.innerWidth > 768) {
-          menuItems.forEach(item => {
-            item.classList.remove('active');
-          });
-        }
-        updateDesktopSubMenus();
-      });
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 768) {
+        menuItems.forEach(item => {
+          item.classList.remove('active');
+        });
+      }
+      updateDesktopSubMenus();
     });
+  });
   </script>
+  <script src="scripts/main.js" defer></script>
 </body>
 </html>
 
