@@ -38,23 +38,53 @@ if (menuToggle && mainMenu) {
 
 const heroVideo = document.querySelector('.hero-video');
 if (heroVideo) {
-  const log = (msg) => console.log(`[hero-video] ${msg}`);
-  const showVideo = () => {
-    log('show-video triggered');
-    heroVideo.classList.add('is-visible');
+  const timeline = {
+    boot: performance.now(),
+    firstFrame: null,
+    playStart: null,
+    stablePlayback: null,
   };
-  ['canplay', 'loadeddata', 'playing', 'canplaythrough'].forEach((event) => {
-    heroVideo.addEventListener(
-      event,
-      () => {
-        log(`${event}, readyState=${heroVideo.readyState}`);
-        showVideo();
-      },
-      { once: true },
-    );
+  const log = (msg) => console.log(`[hero-video +${Math.round(performance.now() - timeline.boot)}ms] ${msg}`);
+  const showVideo = (() => {
+    let visible = false;
+    return () => {
+      if (!visible) {
+        visible = true;
+        log('show-video triggered');
+        heroVideo.classList.add('is-visible');
+      }
+    };
+  })();
+
+  const milestone = (eventName) => {
+    const now = performance.now();
+    log(`${eventName} (readyState=${heroVideo.readyState})`);
+    return now;
+  };
+
+  const onceEvents = ['loadeddata', 'canplay', 'playing', 'canplaythrough'];
+  onceEvents.forEach((event) => {
+    heroVideo.addEventListener(event, () => {
+      const timestamp = milestone(event);
+      if (!timeline.firstFrame && event !== 'playing') {
+        timeline.firstFrame = timestamp;
+      }
+      if (event === 'playing' && !timeline.playStart) {
+        timeline.playStart = timestamp;
+        log(`time to start playback: ${Math.round(timeline.playStart - timeline.boot)}ms`);
+      }
+      if (event === 'canplaythrough') {
+        timeline.stablePlayback = timestamp;
+        log(`stable playback reached: ${Math.round(timeline.stablePlayback - timeline.boot)}ms`);
+      }
+      showVideo();
+    }, { once: true });
+  });
+
+  heroVideo.addEventListener('waiting', () => {
+    log('waiting for buffer');
   });
   heroVideo.addEventListener('error', (event) => {
     log(`error event code=${event?.target?.error?.code}`);
   });
-  heroVideo.addEventListener('waiting', () => log('waiting for data'));
 }
