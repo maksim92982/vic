@@ -57,6 +57,4 @@ if (heroVideo) {
     log(`error event code=${event?.target?.error?.code}`);
   });
   heroVideo.addEventListener('waiting', () => log('waiting for data'));
-  heroVideo.load();
-  heroVideo.play().then(() => log('play resolved')).catch((err) => log(`play failed: ${err.message}`));
 }
