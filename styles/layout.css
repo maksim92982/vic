@@ -174,14 +174,14 @@ h6 {
   position: relative;
   height: 70vh;
   overflow: hidden;
-  background-color: #b49d73;
+  background-color: #aca084;
 }
 .hero-video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   z-index: 0;
   opacity: 0;
