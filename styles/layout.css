@@ -687,11 +687,7 @@ h6 {
     display: block;
   }
   .main-menu .menu-item-has-children > a::after {
-    content: '+';
-    font-size: 16px;
-  }
-  .main-menu .menu-item-has-children.active > a::after {
-    content: '-';
+    content: none;
   }
   .story-top {
     grid-template-columns: 1fr;
