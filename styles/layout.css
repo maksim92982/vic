@@ -360,6 +360,8 @@ h6 {
 .story-side-article .story-text-justify {
   text-align: justify;
   text-align-last: left;
+  max-width: 640px;
+  margin: 0 auto 1rem;
 }
 .story-side-article .story-contacts {
   text-align: left;
