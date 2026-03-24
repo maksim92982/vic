@@ -533,9 +533,6 @@ h6 {
   height: 24px;
   display: block;
 }
-#overlay {
-  /* placeholder if needed */
-}
 .overlay {
   position: fixed;
   inset: 0;

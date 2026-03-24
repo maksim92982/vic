@@ -43,6 +43,18 @@
       justify-content: center;
       font-weight: 600;
     }
+    
+    .link-button {
+      background: none;
+      border: none;
+      color: #090821;
+      font: inherit;
+      text-decoration: underline;
+      padding: 0;
+      margin: 0.4rem 0;
+      cursor: pointer;
+      text-align: left;
+    }
 
     .btn.primary {
       background: #c79d63;
@@ -339,7 +351,7 @@
         <span>Активных клиентов</span>
       </div>
       <div class="stat-card">
-        <strong>1 000 000<span>РУБЛЕЙ</span></strong>
+        <strong>1 000 000</strong>
         <span>Наша ответственность застрахована на
   </span>
       </div>
@@ -348,7 +360,7 @@
         <span>лет на рынке</span>
       </div>
       <div class="stat-card">
-        <span>С</span><strong>2016</strong>
+        <strong>2016</strong>
         <span>с товарным знаком</span>
       </div>
     </section>
@@ -607,6 +619,31 @@
       updateDesktopSubMenus();
     });
   });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const modal = document.getElementById('licensesModal');
+      const openTrigger = document.querySelector('[data-open-licenses]');
+      const closeTrigger = modal?.querySelector('.overlay-close');
+      function setModalVisibility(isVisible) {
+        if (!modal) return;
+        modal.setAttribute('aria-hidden', isVisible ? 'false' : 'true');
+      }
+      if (openTrigger) {
+        openTrigger.addEventListener('click', () => setModalVisibility(true));
+      }
+      if (closeTrigger) {
+        closeTrigger.addEventListener('click', () => setModalVisibility(false));
+      }
+      modal?.addEventListener('click', (event) => {
+        if (event.target === modal) setModalVisibility(false);
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          setModalVisibility(false);
+        }
+      });
+    });
   </script>
   <script src="scripts/main.js" defer></script>
 </body>
