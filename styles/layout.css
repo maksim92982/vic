@@ -533,6 +533,8 @@ h6 {
   height: 24px;
   display: block;
 }
+#overlay {
+ 
 #details .phone-number {
   text-align: right;
 }

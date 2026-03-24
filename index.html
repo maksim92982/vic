@@ -344,11 +344,11 @@
   </span>
       </div>
       <div class="stat-card">
-        <strong>20 лет</strong>
+        <strong>20 </strong><span>лет</span>
         <span>лет на рынке</span>
       </div>
       <div class="stat-card">
-        <strong><span class="stat-letter">С</span>&nbsp;2016</strong>
+        <span>с</span><strong><span class="stat-letter">С</span>&nbsp;2016</strong>
         <span>с товарным знаком</span>
       </div>
     </section>
@@ -392,6 +392,7 @@
         <div class="anchor-card" id="licenses">
           <h3>Сертификаты и лицензии</h3>
           <p>По запросу предоставляем подтверждающие документы по специалистам и направлениям работы.</p>
+          <button class="link-button" type="button" data-open-licenses>Посмотреть документы</button>
         </div>
       </div>
     </section>
@@ -490,6 +491,33 @@
     </footer>
   </div>
   <a class="floating-contact" href="#contacts">Бесплатная консультация</a>
+  <div class="overlay" id="licensesModal" aria-hidden="true">
+    <div class="overlay-dialog" role="dialog" aria-modal="true" aria-labelledby="licensesDialogTitle">
+      <header class="overlay-header">
+        <h3 id="licensesDialogTitle">Сертификаты и лицензии</h3>
+        <button class="overlay-close" type="button" aria-label="Закрыть">×</button>
+      </header>
+      <p class="overlay-subtitle">Нажмите на документ, чтобы открыть его в новом окне. Всего четыре файла.</p>
+      <div class="overlay-grid">
+        <a class="overlay-card" href="assets/cert-1.jpg" target="_blank" rel="noopener noreferrer">
+          <img src="assets/cert-1-thumb.jpg" alt="Сертификат Сбер Бизнес" loading="lazy">
+          <span>Сертификат Сбер Бизнес</span>
+        </a>
+        <a class="overlay-card" href="assets/cert-2.jpg" target="_blank" rel="noopener noreferrer">
+          <img src="assets/cert-2-thumb.jpg" alt="Сертификат Райффайзенбанк" loading="lazy">
+          <span>Сертификат Райффайзенбанк</span>
+        </a>
+        <a class="overlay-card" href="assets/cert-3.jpg" target="_blank" rel="noopener noreferrer">
+          <img src="assets/cert-3-thumb.jpg" alt="Свидетельство товарного знака" loading="lazy">
+          <span>Свидетельство товарного знака</span>
+        </a>
+        <a class="overlay-card" href="assets/cert-4.jpg" target="_blank" rel="noopener noreferrer">
+          <img src="assets/cert-4-thumb.jpg" alt="WHO IS WHO в России" loading="lazy">
+          <span>WHO IS WHO в России</span>
+        </a>
+      </div>
+    </div>
+  </div>
   <script>
     // JavaScript для мобильного меню
     document.addEventListener('DOMContentLoaded', function() {
