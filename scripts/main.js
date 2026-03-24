@@ -1,28 +1,48 @@
-// stats animate
+// Stats animation with support for prefixes/suffixes like "С 2016" and "руб."
 const statNodes = document.querySelectorAll('.stat-card strong');
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      const el = entry.target;
-      if (!el.dataset.animated) {
-        const target = parseInt(el.textContent.replace(/[^0-9]/g, ''), 10) || 0;
-        let start = 0;
-        const duration = 1200;
-        const step = (timestamp) => {
-          start += Math.ceil(target / (duration / 16));
-          if (start >= target) {
-            el.textContent = target.toLocaleString('ru-RU');
-            el.dataset.animated = '1';
-          } else {
-            el.textContent = start.toLocaleString('ru-RU');
-            requestAnimationFrame(step);
-          }
-        };
+    if (!entry.isIntersecting) return;
+
+    const el = entry.target;
+    if (el.dataset.animated) return;
+
+    const raw = (el.innerText || '').trim();
+    const numberMatch = raw.match(/\d[\d\s]*/);
+
+    if (!numberMatch) {
+      el.dataset.animated = '1';
+      return;
+    }
+
+    const numericPart = numberMatch[0];
+    const target = parseInt(numericPart.replace(/\s/g, ''), 10);
+    if (!Number.isFinite(target)) {
+      el.dataset.animated = '1';
+      return;
+    }
+
+    const prefix = raw.slice(0, numberMatch.index);
+    const suffix = raw.slice(numberMatch.index + numericPart.length);
+    let current = 0;
+    const duration = 1200;
+    const increment = Math.max(1, Math.ceil(target / (duration / 16)));
+
+    const step = () => {
+      current += increment;
+      if (current >= target) {
+        el.textContent = `${prefix}${target.toLocaleString('ru-RU')}${suffix}`;
+        el.dataset.animated = '1';
+      } else {
+        el.textContent = `${prefix}${current.toLocaleString('ru-RU')}${suffix}`;
         requestAnimationFrame(step);
       }
-    }
+    };
+
+    requestAnimationFrame(step);
   });
 }, { threshold: 0.5 });
+
 statNodes.forEach((node) => observer.observe(node));
 
 // mobile menu toggle
