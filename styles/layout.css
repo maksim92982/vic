@@ -219,7 +219,7 @@ h6 {
   line-height: 1.5;
 }
 .hero p.hero-pretitle {
-  font-size: clamp(3.8rem, 7.6vw, 5.6rem);
+  font-size: clamp(2.5rem, 5vw, 3.75rem);
   font-weight: 800;
   line-height: 1.2;
   margin: 0 0 1rem;
@@ -850,7 +850,7 @@ h6 {
 
 @media (max-width: 420px) {
   .hero p.hero-pretitle {
-    font-size: 3.2rem;
+    font-size: 2.1rem;
     line-height: 1.15;
   }
   .hero h1 {
