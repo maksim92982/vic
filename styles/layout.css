@@ -114,6 +114,11 @@ h6 {
   background: #fff;
   z-index: 2200;
 }
+.main-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 .main-menu .menu {
   display: flex;
   justify-content: space-between;
