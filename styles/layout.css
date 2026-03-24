@@ -344,12 +344,15 @@ h6 {
 }
 .story-side-article {
   background: #fff;
-  border-radius: 12px;
-  padding: 1rem 1.1rem;
+  border-radius: 16px;
+  padding: 1.4rem 1.6rem;
   box-shadow: 0 2px 12px rgba(0,0,0,0.08);
   width: 100%;
-  max-width: 640px;
-  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.6rem;
   text-align: left;
 }
 .story-side-article h3 {
@@ -367,8 +370,7 @@ h6 {
 .story-side-article .story-text-justify {
   text-align: justify;
   text-align-last: left;
-  max-width: 560px;
-  margin: 0 auto 1rem;
+  margin: 0;
 }
 .story-side-item {
   background: #fff;
