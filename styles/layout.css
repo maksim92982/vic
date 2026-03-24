@@ -357,6 +357,14 @@ h6 {
   text-align: justify;
   text-align-last: left;
 }
+.story-side-article .story-text-justify {
+  text-align: justify;
+  text-align-last: left;
+}
+.story-side-article .story-contacts {
+  text-align: left;
+  text-align-last: auto;
+}
 .story-side-item {
   background: #fff;
   border-radius: 12px;
