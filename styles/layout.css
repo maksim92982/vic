@@ -219,7 +219,7 @@ h6 {
   line-height: 1.5;
 }
 .hero p.hero-pretitle {
-  font-size: clamp(2.5rem, 5vw, 3.75rem);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
   font-weight: 800;
   line-height: 1.2;
   margin: 0 0 1rem;
@@ -239,13 +239,17 @@ h6 {
   font-family: 'Montserrat', sans-serif;
   font-size: clamp(2.1rem, 3vw, 2.8rem);
   margin-bottom: 1rem;
-  overflow-wrap: anywhere;
-  word-break: break-word;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: auto;
 }
 .hero-service p {
   max-width: 720px;
+  margin: 0 auto;
   font-size: 1rem;
   line-height: 1.6;
+  text-align: justify;
+  text-align-last: left;
 }
 .service-detail {
   padding: 3rem 2rem 4rem;
@@ -850,7 +854,7 @@ h6 {
 
 @media (max-width: 420px) {
   .hero p.hero-pretitle {
-    font-size: 2.1rem;
+    font-size: 1.68rem;
     line-height: 1.15;
   }
   .hero h1 {
