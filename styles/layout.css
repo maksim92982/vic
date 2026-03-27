@@ -407,9 +407,11 @@ h6 {
 }
 .story-intro p {
   text-align: center;
+  font-size: 1.25rem;
 }
 .story-intro h2 {
   margin-bottom: 0.65rem;
+  font-size: 2.25rem;
 }
 .story-cards-row {
   display: grid;
@@ -417,7 +419,6 @@ h6 {
   gap: 1rem;
 }
 .story-side-item p,
-.story-intro p,
 .service-detail p,
 .article-content p,
 .article-content li {
