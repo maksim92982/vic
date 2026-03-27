@@ -532,7 +532,7 @@
   <div class="overlay overlay-preview" id="certificatePreviewModal" aria-hidden="true">
     <div class="overlay-dialog overlay-preview-dialog" role="dialog" aria-modal="true" aria-labelledby="certificatePreviewTitle">
       <header class="overlay-header">
-        <h3 id="certificatePreviewTitle">Просмотр сертификата</h3>
+        <h3 id="certificatePreviewTitle">Сертификат</h3>
         <button class="overlay-close" type="button" data-close-preview aria-label="Закрыть">×</button>
       </header>
       <div class="overlay-preview-body">
@@ -635,6 +635,7 @@
       const modal = document.getElementById('licensesModal');
       const previewModal = document.getElementById('certificatePreviewModal');
       const previewImage = document.getElementById('certificatePreviewImage');
+      const previewTitle = document.getElementById('certificatePreviewTitle');
       const openTrigger = document.querySelector('[data-open-licenses]');
       const closeTrigger = modal?.querySelector('.overlay-close');
       const closePreviewTrigger = previewModal?.querySelector('[data-close-preview]');
@@ -652,6 +653,9 @@
           previewImage.src = '';
           previewImage.alt = '';
         }
+        if (!isVisible && previewTitle) {
+          previewTitle.textContent = 'Сертификат';
+        }
       }
 
       if (openTrigger) {
@@ -668,10 +672,14 @@
         card.addEventListener('click', () => {
           if (!previewImage) return;
           const image = card.querySelector('img');
+          const label = card.querySelector('span')?.textContent?.trim();
           const fullSrc = card.getAttribute('data-full-src');
           if (!fullSrc) return;
           previewImage.src = fullSrc;
           previewImage.alt = image?.alt ?? 'Сертификат';
+          if (previewTitle && label) {
+            previewTitle.textContent = label;
+          }
           setPreviewVisibility(true);
         });
       });
