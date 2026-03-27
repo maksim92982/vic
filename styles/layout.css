@@ -684,7 +684,7 @@ h6 {
 }
 #news .anchor-card,
 #video .anchor-card {
-  width: min(100%, 620px);
+  width: min(100%, 600px);
   min-height: 185px;
 }
 
