@@ -8,7 +8,8 @@ const observer = new IntersectionObserver((entries) => {
     if (el.dataset.animated) return;
 
     const raw = (el.innerText || '').trim();
-    const numberMatch = raw.match(/\d[\d\s]*/);
+    // Keep trailing spaces out of the numeric part so suffix spacing is preserved.
+    const numberMatch = raw.match(/\d(?:[\d\s\u00A0]*\d)?/);
 
     if (!numberMatch) {
       el.dataset.animated = '1';

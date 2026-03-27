@@ -399,6 +399,9 @@ h6 {
   max-width: 900px;
   margin: 1.5rem auto 1.2rem;
 }
+.story-intro p {
+  text-align: center;
+}
 .story-intro h2 {
   margin-bottom: 0.65rem;
 }
@@ -603,6 +606,28 @@ h6 {
 .overlay-card span {
   font-weight: 600;
   font-size: 0.9rem;
+}
+.overlay-card {
+  cursor: zoom-in;
+}
+.overlay-preview {
+  z-index: 2600;
+}
+.overlay-preview-dialog {
+  width: min(980px, 100%);
+  padding-bottom: 1rem;
+}
+.overlay-preview-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#certificatePreviewImage {
+  width: 100%;
+  max-height: calc(90vh - 96px);
+  object-fit: contain;
+  border-radius: 12px;
+  background: #f7f7f7;
 }
 #details .phone-number {
   text-align: right;
