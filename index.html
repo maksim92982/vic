@@ -508,24 +508,35 @@
         <h3 id="licensesDialogTitle">Сертификаты и лицензии</h3>
         <button class="overlay-close" type="button" aria-label="Закрыть">×</button>
       </header>
-      <p class="overlay-subtitle">Нажмите на документ, чтобы открыть его в новом окне.</p>
+      <p class="overlay-subtitle">Нажмите на документ, чтобы открыть его в модальном окне.</p>
       <div class="overlay-grid">
-        <a class="overlay-card" href="assets/cert-1-view.jpg" target="_blank" rel="noopener noreferrer">
+        <button class="overlay-card" type="button" data-full-src="assets/cert-1-view.jpg">
           <img src="assets/cert-1-thumb.jpg" alt="Сертификат Райффайзенбанк" loading="lazy">
           <span>Сертификат Райффайзенбанк</span>
-        </a>
-        <a class="overlay-card" href="assets/cert-2-view.jpg" target="_blank" rel="noopener noreferrer">
+        </button>
+        <button class="overlay-card" type="button" data-full-src="assets/cert-2-view.jpg">
           <img src="assets/cert-2-thumb.jpg" alt="Сертификат Сбер Бизнес" loading="lazy">
           <span>Сертификат Сбер Бизнес</span>
-        </a>
-        <a class="overlay-card" href="assets/cert-3-view.jpg" target="_blank" rel="noopener noreferrer">
+        </button>
+        <button class="overlay-card" type="button" data-full-src="assets/cert-3-view.jpg">
           <img src="assets/cert-3-thumb.jpg" alt="Свидетельство товарного знака" loading="lazy">
           <span>Свидетельство товарного знака</span>
-        </a>
-        <a class="overlay-card" href="assets/cert-4-view.jpg" target="_blank" rel="noopener noreferrer">
+        </button>
+        <button class="overlay-card" type="button" data-full-src="assets/cert-4-view.jpg">
           <img src="assets/cert-4-thumb.jpg" alt="WHO IS WHO в России" loading="lazy">
           <span>WHO IS WHO в России</span>
-        </a>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="overlay overlay-preview" id="certificatePreviewModal" aria-hidden="true">
+    <div class="overlay-dialog overlay-preview-dialog" role="dialog" aria-modal="true" aria-labelledby="certificatePreviewTitle">
+      <header class="overlay-header">
+        <h3 id="certificatePreviewTitle">Просмотр сертификата</h3>
+        <button class="overlay-close" type="button" data-close-preview aria-label="Закрыть">×</button>
+      </header>
+      <div class="overlay-preview-body">
+        <img id="certificatePreviewImage" src="" alt="">
       </div>
     </div>
   </div>
@@ -622,23 +633,61 @@
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const modal = document.getElementById('licensesModal');
+      const previewModal = document.getElementById('certificatePreviewModal');
+      const previewImage = document.getElementById('certificatePreviewImage');
       const openTrigger = document.querySelector('[data-open-licenses]');
       const closeTrigger = modal?.querySelector('.overlay-close');
+      const closePreviewTrigger = previewModal?.querySelector('[data-close-preview]');
+      const certCards = modal?.querySelectorAll('.overlay-card') ?? [];
+
       function setModalVisibility(isVisible) {
         if (!modal) return;
         modal.setAttribute('aria-hidden', isVisible ? 'false' : 'true');
       }
+
+      function setPreviewVisibility(isVisible) {
+        if (!previewModal) return;
+        previewModal.setAttribute('aria-hidden', isVisible ? 'false' : 'true');
+        if (!isVisible && previewImage) {
+          previewImage.src = '';
+          previewImage.alt = '';
+        }
+      }
+
       if (openTrigger) {
         openTrigger.addEventListener('click', () => setModalVisibility(true));
       }
       if (closeTrigger) {
         closeTrigger.addEventListener('click', () => setModalVisibility(false));
       }
+      if (closePreviewTrigger) {
+        closePreviewTrigger.addEventListener('click', () => setPreviewVisibility(false));
+      }
+
+      certCards.forEach((card) => {
+        card.addEventListener('click', () => {
+          if (!previewImage) return;
+          const image = card.querySelector('img');
+          const fullSrc = card.getAttribute('data-full-src');
+          if (!fullSrc) return;
+          previewImage.src = fullSrc;
+          previewImage.alt = image?.alt ?? 'Сертификат';
+          setPreviewVisibility(true);
+        });
+      });
+
       modal?.addEventListener('click', (event) => {
         if (event.target === modal) setModalVisibility(false);
       });
+      previewModal?.addEventListener('click', (event) => {
+        if (event.target === previewModal) setPreviewVisibility(false);
+      });
       document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') {
+          if (previewModal?.getAttribute('aria-hidden') === 'false') {
+            setPreviewVisibility(false);
+            return;
+          }
           setModalVisibility(false);
         }
       });
