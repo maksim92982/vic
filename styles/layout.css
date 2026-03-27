@@ -374,7 +374,12 @@ h6 {
 .story-side-article .story-text-justify {
   text-align: justify;
   text-align-last: left;
-  margin: 0;
+  text-justify: inter-word;
+  hyphens: auto;
+  margin: 0 0 1rem;
+}
+.story-side-article .story-text-justify:last-child {
+  margin-bottom: 0;
 }
 .story-side-item {
   background: #fff;
