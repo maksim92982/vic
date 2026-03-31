@@ -412,6 +412,7 @@ h6 {
 .lead-copy {
   text-align: center;
   font-size: 1.25rem;
+  white-space: nowrap;
 }
 .story-intro h2 {
   margin-bottom: 0.65rem;
