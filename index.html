@@ -411,7 +411,7 @@
 <section class="cta" id="contacts">
       <div>
         <h2>Остались вопросы?</h2>
-        <p>Заполните форму, и мы свяжемся с вами в течение рабочего дня.<br>Первая консультация 15-20 минут бесплатно.</p>
+        <p>Заполните форму, и мы свяжемся с вами<br>в течение рабочего дня.<br>Первая консультация 15-20 минут бесплатно.</p>
       </div>
       <form class="contact-form" id="feedback" action="https://formsubmit.co/info@vicons.ru" method="POST">
         <input type="hidden" name="_subject" value="Новая заявка с сайта">
@@ -429,10 +429,24 @@
         <p>Статьи, новости компании и полезные видео для предпринимателей.</p>
       </div>
       <div class="blog-card-grid">
-        <a class="blog-card" href="#articles">
+        <div class="blog-card blog-card--articles" id="articles">
           <h3>Статьи</h3>
           <p>Проверки ФНС, проверка контрагента и закрытие фирмы с долгами.</p>
-        </a>
+          <div class="blog-article-list">
+            <a class="blog-article-link" href="article-fns-proverki.html">
+              <span class="blog-article-title">Проверки ФНС: кто в зоне риска и как действовать</span>
+              <span class="blog-article-text">Критерии риска, как ФНС выявляет неучтённые доходы и как отвечать на запросы.</span>
+            </a>
+            <a class="blog-article-link" href="article-proverka-kontragenta.html">
+              <span class="blog-article-title">Как проверить контрагента перед сделкой</span>
+              <span class="blog-article-text">Экспресс и углублённая проверка, судебные и финансовые риски, признаки неблагонадёжности.</span>
+            </a>
+            <a class="blog-article-link" href="article-zakryt-firmu-s-dolgami.html">
+              <span class="blog-article-title">Как закрыть фирму с долгами</span>
+              <span class="blog-article-text">Законные сценарии ликвидации, риски для собственников и когда нужна процедура банкротства.</span>
+            </a>
+          </div>
+        </div>
         <a class="blog-card" href="#news">
           <h3>Новости компании</h3>
           <p>Публикуем обновления по услугам, изменениям в законодательстве и новым кейсам.</p>
@@ -442,25 +456,6 @@
           <p>Подборка коротких видеоразборов по налоговым проверкам и юридической защите бизнеса.</p>
         </a>
       </div>
-      <div class="article-grid">
-        <a class="article-card" href="article-fns-proverki.html">
-          <img src="https://vicons.ru/wp-content/uploads/2021/03/proverka-biznesa-1-350x250.jpg" alt="Проверки ФНС">
-          <h3>Проверки ФНС: кто в зоне риска и как действовать</h3>
-          <p>Критерии риска, как ФНС выявляет неучтённые доходы и как отвечать на запросы.</p>
-        </a>
-        <a class="article-card" href="article-proverka-kontragenta.html">
-          <img src="https://vicons.ru/wp-content/uploads/2021/09/oborotnue-sredstva-350x250.jpg" alt="Проверка контрагента">
-          <h3>Как проверить контрагента перед сделкой</h3>
-          <p>Экспресс и углублённая проверка, судебные и финансовые риски, признаки неблагонадёжности.</p>
-        </a>
-        <a class="article-card" href="article-zakryt-firmu-s-dolgami.html">
-          <img src="https://vicons.ru/wp-content/uploads/2021/09/svoy-biznes-350x250.jpg" alt="Закрыть фирму с долгами">
-          <h3>Как закрыть фирму с долгами</h3>
-          <p>Законные сценарии ликвидации, риски для собственников и когда нужна процедура банкротства.</p>
-        </a>
-      </div>
-    </section>
-
     <section class="articles" id="news">
       <div class="section-header">
         <h2>Новости компании</h2>

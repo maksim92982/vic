@@ -552,6 +552,39 @@ h6 {
   margin: 0;
   color: #4a4a4a;
 }
+.blog-card--articles {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+.blog-article-list {
+  display: grid;
+  gap: 0.75rem;
+}
+.blog-article-link {
+  display: block;
+  padding: 0.85rem 0.95rem;
+  border-radius: 10px;
+  background: #f7f5ef;
+  color: #090821;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.blog-article-link:hover {
+  background: #f0e9db;
+  transform: translateY(-2px);
+}
+.blog-article-title {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+.blog-article-text {
+  display: block;
+  color: #4a4a4a;
+  font-size: 0.98rem;
+  line-height: 1.4;
+}
 .site-footer {
   background: #090821;
   color: #fff;
