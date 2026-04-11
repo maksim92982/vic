@@ -332,10 +332,24 @@
     font-weight: 600;
   }
 
-  .admin-controls button.primary {
-    background: #1d1d1d;
-    color: #fff;
-  }
+      .admin-controls button.primary {
+        background: #1d1d1d;
+        color: #fff;
+      }
+
+      .admin-status {
+        margin-top: 0.75rem;
+        font-size: 0.9rem;
+        color: #444;
+      }
+
+      .admin-status.success {
+        color: #1d7a3f;
+      }
+
+      .admin-status.error {
+        color: #c0392b;
+      }
   </style>
 </head>
 <body>
@@ -584,6 +598,7 @@
             <button type="button" id="adminSave" class="primary">Сохранить изменения</button>
             <button type="button" id="adminClose">Закрыть</button>
           </div>
+        <div id="adminStatus" class="admin-status" aria-live="polite"></div>
         </header>
         <div class="admin-sidebar">
           <button type="button" data-admin-tab="articles" class="active">Статьи</button>
@@ -907,11 +922,14 @@
         }
       };
 
-      let state = loadState();
+      let state = deepClone(defaultState);
 
+      const BLOG_DATA_URL = '/blog-data.json';
+      const API_SAVE_URL = '/api/save-blog';
       const adminOverlay = document.getElementById('adminPanel');
       const adminClose = document.getElementById('adminClose');
       const adminSave = document.getElementById('adminSave');
+      const adminStatusEl = document.getElementById('adminStatus');
       const adminTabs = document.querySelectorAll('[data-admin-tab]');
       const adminSections = document.querySelectorAll('.admin-section');
       let currentTab = 'articles';
@@ -919,7 +937,8 @@
       function isAdminHash() {
         return window.location.hash === ADMIN_HASH;
       }
-      document.addEventListener('DOMContentLoaded', () => {
+      document.addEventListener('DOMContentLoaded', async () => {
+        state = await loadState();
         renderCards();
         bindControls();
         if (isAdminHash()) {
@@ -965,11 +984,16 @@
           });
         });
 
-        adminSave?.addEventListener('click', () => {
+        adminSave?.addEventListener('click', async () => {
           collectAdminState();
-          saveState();
+          saveStateLocally();
           renderCards();
-          alert('Сохранено. Теперь контент будет подгружаться с новых значений.');
+          try {
+            await publishToServer();
+            showStatus('Сохранено в репозиторий и запущен деплой.', 'success');
+          } catch (error) {
+            showStatus(`Ошибка сохранения: ${error.message}`, 'error');
+          }
         });
       }
 
@@ -1099,23 +1123,81 @@
         });
       }
 
-      function loadState() {
-        try {
-          const stored = localStorage.getItem(STORAGE_KEY);
-          if (stored) {
-            return JSON.parse(stored);
-          }
-        } catch (error) {
-          console.warn('Не удалось загрузить сохранённый контент блога.', error);
+      async function loadState() {
+        const remote = await fetchRemoteState();
+        if (remote) {
+          saveStateToLocalStorage(remote);
+          return sanitizeState(remote);
+        }
+        const stored = loadFromStorage();
+        if (stored) {
+          return sanitizeState(stored);
         }
         return deepClone(defaultState);
       }
 
-      function saveState() {
+      async function fetchRemoteState() {
         try {
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+          const response = await fetch(BLOG_DATA_URL, { cache: 'no-store' });
+          if (!response.ok) return null;
+          return await response.json();
         } catch (error) {
-          console.warn('Не удалось сохранить контент.', error);
+          console.warn('Не удалось загрузить blog-data.json:', error);
+          return null;
+        }
+      }
+
+      function loadFromStorage() {
+        try {
+          const stored = localStorage.getItem(STORAGE_KEY);
+          return stored ? JSON.parse(stored) : null;
+        } catch (error) {
+          console.warn('Не удалось считать localStorage:', error);
+          return null;
+        }
+      }
+
+      function saveStateLocally() {
+        saveStateToLocalStorage(state);
+      }
+
+      function saveStateToLocalStorage(payload) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+        } catch (error) {
+          console.warn('Не удалось сохранить state локально:', error);
+        }
+      }
+
+      function sanitizeState(raw) {
+        if (!raw || typeof raw !== 'object') return deepClone(defaultState);
+        return {
+          articles: raw.articles || defaultState.articles,
+          news: raw.news || defaultState.news,
+          videos: raw.videos || defaultState.videos,
+        };
+      }
+
+      async function publishToServer() {
+        const response = await fetch(API_SAVE_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(state),
+        });
+
+        const payload = await response.json().catch(() => ({}));
+
+        if (!response.ok || !payload.success) {
+          throw new Error(payload.error || 'Не удалось сохранить в GitHub');
+        }
+      }
+
+      function showStatus(message, type = '') {
+        if (!adminStatusEl) return;
+        adminStatusEl.textContent = message;
+        adminStatusEl.className = 'admin-status';
+        if (type) {
+          adminStatusEl.classList.add(type);
         }
       }
 
