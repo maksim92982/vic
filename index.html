@@ -1052,6 +1052,7 @@
             <input type="text" class="admin-entry-cover" placeholder="URL обложки" value="${escapeHtml(entry.coverUrl)}">
             <input type="file" accept="image/*" class="admin-entry-cover-file">
           </div>
+          <input type="text" class="admin-entry-video" placeholder="URL видео (mp4, iframe-embed)" value="${escapeHtml(entry.videoUrl)}">
           <label style="font-size:0.9rem;color:#555;margin-bottom:0.2rem;">Текст статьи (HTML allowed)</label>
           <textarea class="admin-entry-text" rows="4" placeholder="Текст статьи">${escapeHtml(entry.bodyHtml)}</textarea>
           <div class="admin-controls">
@@ -1101,6 +1102,7 @@
           const slug = normalizeSlug(rawSlug);
           const manualUrl = entry.querySelector('.admin-entry-url')?.value.trim();
           const coverUrl = entry.querySelector('.admin-entry-cover')?.value.trim();
+          const videoUrl = entry.querySelector('.admin-entry-video')?.value.trim();
           const bodyHtml = entry.querySelector('.admin-entry-text')?.value.trim();
           const preview = entry.querySelector('.admin-entry-preview')?.value.trim();
           const url = manualUrl || (slug ? `/article-${slug}.html` : '');
@@ -1109,6 +1111,7 @@
             title: entry.querySelector('.admin-entry-title')?.value.trim() || '',
             preview,
             coverUrl,
+            videoUrl,
             bodyHtml,
             text: preview,
             url,

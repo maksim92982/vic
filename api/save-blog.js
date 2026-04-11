@@ -61,13 +61,21 @@ async function saveFile(content, sha) {
 }
 
 function buildArticleHtml(article) {
-  const { title, slug, coverUrl, preview, bodyHtml } = article;
+  const { title, slug, coverUrl, preview, bodyHtml, videoUrl } = article;
   const safeTitle = title || 'Статья';
   const safePreview = preview || '';
   const safeBody = bodyHtml || '';
   const hero = coverUrl
     ? `<div class="article-hero" style="background-image:url('${coverUrl}');"></div>`
     : '<div class="article-hero article-hero--noimage"></div>';
+  const videoPlayer = videoUrl
+    ? `<div class="article-video">
+        <video controls playsinline poster="${coverUrl || ''}">
+          <source src="${videoUrl}" />
+          Ваш браузер не поддерживает видео.
+        </video>
+      </div>`
+    : '';
 
   return `<!DOCTYPE html>
 <html lang="ru">
@@ -106,6 +114,15 @@ function buildArticleHtml(article) {
     .article-body {
       line-height:1.6;
     }
+    .article-video {
+      margin-bottom:1.5rem;
+    }
+    .article-video video {
+      width:100%;
+      max-width:100%;
+      border-radius:12px;
+      background:#000;
+    }
   </style>
 </head>
 <body>
@@ -117,9 +134,10 @@ function buildArticleHtml(article) {
     </div>
   </header>
   ${hero}
-  <main class="article-container">
+    <main class="article-container">
     <h1>${safeTitle}</h1>
     <p class="article-preview">${safePreview}</p>
+      ${videoPlayer}
     <section class="article-body">
       ${safeBody}
     </section>
