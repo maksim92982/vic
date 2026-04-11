@@ -298,10 +298,16 @@
     background: #f9f9f9;
   }
 
-  .admin-entry input,
-  .admin-entry textarea {
-    margin-bottom: 0.4rem;
-  }
+      .admin-entry input,
+      .admin-entry textarea {
+        margin-bottom: 0.4rem;
+      }
+
+      .admin-cover-row {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
 
   .admin-entry button {
     padding: 0.4rem 0.8rem;
@@ -893,21 +899,30 @@
           title: 'Статьи',
           description: 'Проверки ФНС, проверка контрагента и закрытие фирмы с долгами.',
           items: [
-            {
-              title: 'Проверки ФНС: кто в зоне риска и как действовать',
-              text: 'Критерии риска, как ФНС выявляет неучтённые доходы и как отвечать на запросы.',
-              url: 'article-fns-proverki.html'
-            },
-            {
-              title: 'Как проверить контрагента перед сделкой',
-              text: 'Экспресс и углублённая проверка, судебные и финансовые риски, признаки неблагонадёжности.',
-              url: 'article-proverka-kontragenta.html'
-            },
-            {
-              title: 'Как закрыть фирму с долгами',
-              text: 'Законные сценарии ликвидации, риски для собственников и когда нужна процедура банкротства.',
-              url: 'article-zakryt-firmu-s-dolgami.html'
-            }
+          {
+            slug: 'fns-proverki',
+            title: 'Проверки ФНС: кто в зоне риска и как действовать',
+            preview: 'Критерии риска, как ФНС выявляет неучтённые доходы и как отвечать на запросы.',
+            bodyHtml: '<p>Налоговые органы усиливают контроль...</p>',
+            coverUrl: '/assets/image-132183f4-a90c-4bb2-bf58-57313ca3ff13.png',
+            url: '/article-fns-proverki.html'
+          },
+          {
+            slug: 'proverka-kontragenta',
+            title: 'Как проверить контрагента перед сделкой',
+            preview: 'Экспресс и углублённая проверка, судебные и финансовые риски, признаки неблагонадёжности.',
+            bodyHtml: '<p>Экспертная проверка контрагентов...</p>',
+            coverUrl: '/assets/image-132183f4-a90c-4bb2-bf58-57313ca3ff13.png',
+            url: '/article-proverka-kontragenta.html'
+          },
+          {
+            slug: 'zakryt-firmu',
+            title: 'Как закрыть фирму с долгами',
+            preview: 'Законные сценарии ликвидации...',
+            bodyHtml: '<p>Закрытие компании с долгами возможно...</p>',
+            coverUrl: '/assets/image-132183f4-a90c-4bb2-bf58-57313ca3ff13.png',
+            url: '/article-zakryt-firmu-s-dolgami.html'
+          }
           ]
         },
         news: {
@@ -1027,9 +1042,18 @@
         wrapper.className = 'admin-entry';
 
         wrapper.innerHTML = `
+          <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+            <input type="text" class="admin-entry-slug" placeholder="Slug (article-...)" value="${escapeHtml(entry.slug)}" style="flex:1;min-width:200px;">
+            <input type="text" class="admin-entry-url" placeholder="URL (если нужен свой)" value="${escapeHtml(entry.url)}" style="flex:1;min-width:200px;">
+          </div>
           <input type="text" class="admin-entry-title" placeholder="Заголовок" value="${escapeHtml(entry.title)}">
-          <textarea class="admin-entry-text" rows="2" placeholder="Текст">${escapeHtml(entry.text)}</textarea>
-          <input type="text" class="admin-entry-url" placeholder="Ссылка" value="${escapeHtml(entry.url)}">
+          <input type="text" class="admin-entry-preview" placeholder="Краткое описание" value="${escapeHtml(entry.preview)}">
+          <div class="admin-cover-row">
+            <input type="text" class="admin-entry-cover" placeholder="URL обложки" value="${escapeHtml(entry.coverUrl)}">
+            <input type="file" accept="image/*" class="admin-entry-cover-file">
+          </div>
+          <label style="font-size:0.9rem;color:#555;margin-bottom:0.2rem;">Текст статьи (HTML allowed)</label>
+          <textarea class="admin-entry-text" rows="4" placeholder="Текст статьи">${escapeHtml(entry.bodyHtml)}</textarea>
           <div class="admin-controls">
             <button type="button" class="delete-entry">Удалить</button>
           </div>
@@ -1038,6 +1062,20 @@
         wrapper.querySelector('.delete-entry')?.addEventListener('click', () => {
           wrapper.remove();
         });
+
+        const fileInput = wrapper.querySelector('.admin-entry-cover-file');
+        const coverField = wrapper.querySelector('.admin-entry-cover');
+        if (fileInput && coverField) {
+          fileInput.addEventListener('change', () => {
+            const file = fileInput.files?.[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = () => {
+              coverField.value = reader.result || '';
+            };
+            reader.readAsDataURL(file);
+          });
+        }
 
         container.appendChild(wrapper);
       }
@@ -1058,11 +1096,24 @@
       function collectEntries(section) {
         const container = document.getElementById(`admin-${section}-list`);
         if (!container) return [];
-        return Array.from(container.children).map((entry) => ({
-          title: entry.querySelector('.admin-entry-title')?.value.trim() || '',
-          text: entry.querySelector('.admin-entry-text')?.value.trim() || '',
-          url: entry.querySelector('.admin-entry-url')?.value.trim() || ''
-        })).filter((entry) => entry.title || entry.text || entry.url);
+        return Array.from(container.children).map((entry) => {
+          const rawSlug = entry.querySelector('.admin-entry-slug')?.value || '';
+          const slug = normalizeSlug(rawSlug);
+          const manualUrl = entry.querySelector('.admin-entry-url')?.value.trim();
+          const coverUrl = entry.querySelector('.admin-entry-cover')?.value.trim();
+          const bodyHtml = entry.querySelector('.admin-entry-text')?.value.trim();
+          const preview = entry.querySelector('.admin-entry-preview')?.value.trim();
+          const url = manualUrl || (slug ? `/article-${slug}.html` : '');
+          return {
+            slug,
+            title: entry.querySelector('.admin-entry-title')?.value.trim() || '',
+            preview,
+            coverUrl,
+            bodyHtml,
+            text: preview,
+            url,
+          };
+        }).filter((entry) => entry.title || entry.preview || entry.bodyHtml);
       }
 
       function renderCards() {
@@ -1214,6 +1265,16 @@
         const div = document.createElement('div');
         div.textContent = text;
         return div.innerHTML;
+      }
+
+      function normalizeSlug(raw) {
+        return (raw || '')
+          .toString()
+          .trim()
+          .toLowerCase()
+          .replace(/[^a-z0-9-]+/g, '-')
+          .replace(/-+/g, '-')
+          .replace(/^-|-$/g, '');
       }
     })();
   </script>
