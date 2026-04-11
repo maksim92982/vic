@@ -214,6 +214,128 @@
         content: none;
       }
     }
+  
+  .admin-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(3, 10, 22, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    z-index: 6000;
+  }
+
+  .admin-overlay[data-visible="true"] {
+    display: flex;
+  }
+
+  .admin-panel {
+    width: min(960px, 100%);
+    max-height: 90vh;
+    background: #fff;
+    border-radius: 16px;
+    overflow-y: auto;
+    padding: 1.5rem;
+    box-shadow: 0 30px 60px rgba(4, 12, 32, 0.45);
+  }
+
+  .admin-panel h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.5rem;
+    color: #111;
+  }
+
+  .admin-panel small {
+    color: #555;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .admin-sidebar {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .admin-sidebar button {
+    flex: 1;
+    padding: 0.5rem;
+    border-radius: 999px;
+    border: 1px solid #ccc;
+    background: #f1f1f1;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .admin-sidebar button.active {
+    background: #1d1d1d;
+    color: #fff;
+    border-color: #1d1d1d;
+  }
+
+  .admin-section {
+    display: none;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1rem;
+  }
+
+  .admin-section.active {
+    display: block;
+  }
+
+  .admin-section:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .admin-entry {
+    border: 1px solid #ececec;
+    padding: 0.65rem;
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+    background: #f9f9f9;
+  }
+
+  .admin-entry input,
+  .admin-entry textarea {
+    margin-bottom: 0.4rem;
+  }
+
+  .admin-entry button {
+    padding: 0.4rem 0.8rem;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    background: #ff5f5f;
+    color: #fff;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+
+  .admin-entry button:hover {
+    opacity: 0.9;
+  }
+
+  .admin-controls {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .admin-controls button {
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    border: 1px solid #1d1d1d;
+    background: #fff;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .admin-controls button.primary {
+    background: #1d1d1d;
+    color: #fff;
+  }
   </style>
 </head>
 <body>
@@ -463,8 +585,13 @@
             <button type="button" id="adminClose">Закрыть</button>
           </div>
         </header>
+        <div class="admin-sidebar">
+          <button type="button" data-admin-tab="articles" class="active">Статьи</button>
+          <button type="button" data-admin-tab="news">Новости</button>
+          <button type="button" data-admin-tab="videos">Видео</button>
+        </div>
 
-        <section class="admin-section" id="admin-articles">
+        <section class="admin-section active" id="admin-articles" data-section="articles">
           <h3>Статьи</h3>
           <label>Заголовок</label>
           <input type="text" id="admin-articles-title">
@@ -475,7 +602,7 @@
           <button type="button" data-add-entry="articles">Добавить статью</button>
         </section>
 
-        <section class="admin-section" id="admin-news">
+        <section class="admin-section" id="admin-news" data-section="news">
           <h3>Новости</h3>
           <label>Заголовок</label>
           <input type="text" id="admin-news-title">
@@ -486,7 +613,7 @@
           <button type="button" data-add-entry="news">Добавить запись</button>
         </section>
 
-        <section class="admin-section" id="admin-videos">
+        <section class="admin-section" id="admin-videos" data-section="videos">
           <h3>Полезные видео</h3>
           <label>Заголовок</label>
           <input type="text" id="admin-videos-title">
@@ -670,100 +797,6 @@
     });
   });
 
-  .admin-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(3, 10, 22, 0.8);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    z-index: 6000;
-  }
-
-  .admin-overlay[data-visible="true"] {
-    display: flex;
-  }
-
-  .admin-panel {
-    width: min(960px, 100%);
-    max-height: 90vh;
-    background: #fff;
-    border-radius: 16px;
-    overflow-y: auto;
-    padding: 1.5rem;
-    box-shadow: 0 30px 60px rgba(4, 12, 32, 0.45);
-  }
-
-  .admin-panel h2 {
-    margin: 0 0 0.5rem;
-    font-size: 1.5rem;
-    color: #111;
-  }
-
-  .admin-panel small {
-    color: #555;
-    display: block;
-    margin-bottom: 1rem;
-  }
-
-  .admin-section {
-    margin-bottom: 1.5rem;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 1rem;
-  }
-
-  .admin-section:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-  }
-
-  .admin-entry {
-    border: 1px solid #ececec;
-    padding: 0.65rem;
-    border-radius: 8px;
-    margin-bottom: 0.75rem;
-    background: #f9f9f9;
-  }
-
-  .admin-entry input,
-  .admin-entry textarea {
-    margin-bottom: 0.4rem;
-  }
-
-  .admin-entry button {
-    padding: 0.4rem 0.8rem;
-    border-radius: 5px;
-    border: 1px solid transparent;
-    background: #ff5f5f;
-    color: #fff;
-    font-size: 0.85rem;
-    cursor: pointer;
-  }
-
-  .admin-entry button:hover {
-    opacity: 0.9;
-  }
-
-  .admin-controls {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-  }
-
-  .admin-controls button {
-    padding: 0.5rem 1rem;
-    border-radius: 999px;
-    border: 1px solid #1d1d1d;
-    background: #fff;
-    cursor: pointer;
-    font-weight: 600;
-  }
-
-  .admin-controls button.primary {
-    background: #1d1d1d;
-    color: #fff;
-  }
   </script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -876,26 +909,41 @@
 
       let state = loadState();
 
-      const hashMatches = window.location.hash === ADMIN_HASH;
       const adminOverlay = document.getElementById('adminPanel');
       const adminClose = document.getElementById('adminClose');
       const adminSave = document.getElementById('adminSave');
+      const adminTabs = document.querySelectorAll('[data-admin-tab]');
+      const adminSections = document.querySelectorAll('.admin-section');
+      let currentTab = 'articles';
 
+      function isAdminHash() {
+        return window.location.hash === ADMIN_HASH;
+      }
       document.addEventListener('DOMContentLoaded', () => {
         renderCards();
         bindControls();
-        if (hashMatches) {
+        if (isAdminHash()) {
+          openAdmin();
+        }
+      });
+
+      window.addEventListener('hashchange', () => {
+        if (isAdminHash()) {
           openAdmin();
         }
       });
 
       function openAdmin() {
+        if (!adminOverlay) return;
         adminOverlay.setAttribute('data-visible', 'true');
         adminOverlay.setAttribute('aria-hidden', 'false');
+        window.location.hash = ADMIN_HASH;
         populateAdmin();
+        showSection(currentTab);
       }
 
       function closeAdmin() {
+        if (!adminOverlay) return;
         adminOverlay.setAttribute('data-visible', 'false');
         adminOverlay.setAttribute('aria-hidden', 'true');
         window.location.hash = '';
@@ -908,6 +956,12 @@
           button.addEventListener('click', () => {
             const section = button.dataset.addEntry;
             addAdminEntry(section, { title: '', text: '', url: '' });
+          });
+        });
+
+        adminTabs.forEach((tab) => {
+          tab.addEventListener('click', () => {
+            showSection(tab.dataset.adminTab);
           });
         });
 
@@ -930,6 +984,7 @@
         fillEntryContainer('articles', state.articles.items);
         fillEntryContainer('news', state.news.items);
         fillEntryContainer('videos', state.videos.items);
+        showSection(currentTab);
       }
 
       function fillEntryContainer(section, items) {
@@ -990,6 +1045,16 @@
         populateCard('articles', state.articles);
         populateCard('news', state.news);
         populateCard('videos', state.videos);
+      }
+
+      function showSection(sectionKey) {
+        currentTab = sectionKey;
+        adminSections.forEach((section) => {
+          section.classList.toggle('active', section.dataset.section === sectionKey);
+        });
+        adminTabs.forEach((tab) => {
+          tab.classList.toggle('active', tab.dataset.adminTab === sectionKey);
+        });
       }
 
       function populateCard(section, data) {
