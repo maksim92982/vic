@@ -182,6 +182,31 @@ async function writeArticleFile(article) {
   }
 }
 
+function sanitizeItems(section) {
+  if (!section || !Array.isArray(section.items)) return [];
+  return section.items;
+}
+
+async function generateSectionArticles(sectionData) {
+  const items = sanitizeItems(sectionData);
+  if (!items.length) return;
+
+  for (const entry of items) {
+    const slug = entry.slug?.trim();
+    if (!slug) continue;
+
+    const payload = {
+      ...entry,
+      slug,
+      title: entry.title || sectionData.title || 'Статья',
+      preview: entry.preview || sectionData.description || '',
+      bodyHtml: entry.bodyHtml || entry.text || '',
+    };
+
+    await writeArticleFile(payload);
+  }
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
@@ -196,11 +221,9 @@ export default async function handler(req, res) {
   }
 
   try {
-    if (Array.isArray(data.articles)) {
-      for (const article of data.articles) {
-        await writeArticleFile(article);
-      }
-    }
+    await generateSectionArticles(data.articles);
+    await generateSectionArticles(data.news);
+    await generateSectionArticles(data.videos);
 
     const sha = await getExistingSha();
     const payload = {
