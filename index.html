@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru-RU">
 <head>
   <meta charset="UTF-8">
@@ -426,34 +426,23 @@
         <h2>Блог</h2>
         <p>Статьи для предпринимателей.</p>
       </div>
-      <div class="blog-card-grid">
-        <div class="blog-card blog-card--articles" id="articles">
-          <h3>Статьи</h3>
-          <p>Проверки ФНС, проверка контрагента и закрытие фирмы с долгами.</p>
-          <div class="blog-article-list">
-            <a class="blog-article-link" href="article-fns-proverki.html">
-              <span class="blog-article-title">Проверки ФНС: кто в зоне риска и как действовать</span>
-              <span class="blog-article-text">Критерии риска, как ФНС выявляет неучтённые доходы и как отвечать на запросы.</span>
-            </a>
-            <a class="blog-article-link" href="article-proverka-kontragenta.html">
-              <span class="blog-article-title">Как проверить контрагента перед сделкой</span>
-              <span class="blog-article-text">Экспресс и углублённая проверка, судебные и финансовые риски, признаки неблагонадёжности.</span>
-            </a>
-            <a class="blog-article-link" href="article-zakryt-firmu-s-dolgami.html">
-              <span class="blog-article-title">Как закрыть фирму с долгами</span>
-              <span class="blog-article-text">Законные сценарии ликвидации, риски для собственников и когда нужна процедура банкротства.</span>
-            </a>
-          </div>
-        </div>
-        <a class="blog-card" href="#blog">
-          <h3>Новости компании</h3>
-          <p>Публикуем обновления по услугам, изменениям в законодательстве и новым кейсам.</p>
-        </a>
-        <a class="blog-card" href="#blog">
-          <h3>Полезные видео</h3>
-          <p>Подборка коротких видеоразборов по налоговым проверкам и юридической защите бизнеса.</p>
-        </a>
+    <div class="blog-card-grid" id="blogCards">
+      <div class="blog-card blog-card--articles" id="articles-card">
+        <h3 id="articles-title"></h3>
+        <p id="articles-description"></p>
+        <div class="blog-article-list" id="articles-list"></div>
       </div>
+      <div class="blog-card" id="news-card">
+        <h3 id="news-title"></h3>
+        <p id="news-description"></p>
+        <div class="blog-article-list" id="news-list"></div>
+      </div>
+      <div class="blog-card" id="videos-card">
+        <h3 id="videos-title"></h3>
+        <p id="videos-description"></p>
+        <div class="blog-article-list" id="videos-list"></div>
+      </div>
+    </div>
     <section class="map-section" aria-label="Карта офиса">
       <div class="map-wrap">
         <iframe
@@ -464,6 +453,51 @@
         </iframe>
       </div>
     </section>
+    <div class="admin-overlay" id="adminPanel" aria-hidden="true">
+      <div class="admin-panel" role="dialog" aria-modal="true" aria-label="Админ-панель контента">
+        <header class="admin-header">
+          <h2>Админ-панель блога</h2>
+          <small>Доступ по прямой ссылке <code>#adm12345</code>. Здесь можно менять заголовки, описания и списки для трёх блоков.</small>
+          <div class="admin-controls">
+            <button type="button" id="adminSave" class="primary">Сохранить изменения</button>
+            <button type="button" id="adminClose">Закрыть</button>
+          </div>
+        </header>
+
+        <section class="admin-section" id="admin-articles">
+          <h3>Статьи</h3>
+          <label>Заголовок</label>
+          <input type="text" id="admin-articles-title">
+          <label>Описание</label>
+          <textarea id="admin-articles-description" rows="2"></textarea>
+          <label>Статьи</label>
+          <div id="admin-articles-list"></div>
+          <button type="button" data-add-entry="articles">Добавить статью</button>
+        </section>
+
+        <section class="admin-section" id="admin-news">
+          <h3>Новости</h3>
+          <label>Заголовок</label>
+          <input type="text" id="admin-news-title">
+          <label>Описание</label>
+          <textarea id="admin-news-description" rows="2"></textarea>
+          <label>Записи</label>
+          <div id="admin-news-list"></div>
+          <button type="button" data-add-entry="news">Добавить запись</button>
+        </section>
+
+        <section class="admin-section" id="admin-videos">
+          <h3>Полезные видео</h3>
+          <label>Заголовок</label>
+          <input type="text" id="admin-videos-title">
+          <label>Описание</label>
+          <textarea id="admin-videos-description" rows="2"></textarea>
+          <label>Видео</label>
+          <div id="admin-videos-list"></div>
+          <button type="button" data-add-entry="videos">Добавить видео</button>
+        </section>
+      </div>
+    </div>
 
     <footer class="site-footer">
       <div class="footer-grid">
@@ -635,6 +669,101 @@
       updateDesktopSubMenus();
     });
   });
+
+  .admin-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(3, 10, 22, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    z-index: 6000;
+  }
+
+  .admin-overlay[data-visible="true"] {
+    display: flex;
+  }
+
+  .admin-panel {
+    width: min(960px, 100%);
+    max-height: 90vh;
+    background: #fff;
+    border-radius: 16px;
+    overflow-y: auto;
+    padding: 1.5rem;
+    box-shadow: 0 30px 60px rgba(4, 12, 32, 0.45);
+  }
+
+  .admin-panel h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.5rem;
+    color: #111;
+  }
+
+  .admin-panel small {
+    color: #555;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .admin-section {
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1rem;
+  }
+
+  .admin-section:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .admin-entry {
+    border: 1px solid #ececec;
+    padding: 0.65rem;
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+    background: #f9f9f9;
+  }
+
+  .admin-entry input,
+  .admin-entry textarea {
+    margin-bottom: 0.4rem;
+  }
+
+  .admin-entry button {
+    padding: 0.4rem 0.8rem;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    background: #ff5f5f;
+    color: #fff;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+
+  .admin-entry button:hover {
+    opacity: 0.9;
+  }
+
+  .admin-controls {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .admin-controls button {
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    border: 1px solid #1d1d1d;
+    background: #fff;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .admin-controls button.primary {
+    background: #1d1d1d;
+    color: #fff;
+  }
   </script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -706,6 +835,240 @@
         }
       });
     });
+  </script>
+  <script>
+    (function () {
+      const ADMIN_HASH = '#adm12345';
+      const STORAGE_KEY = 'vicBlogCards';
+      const defaultState = {
+        articles: {
+          title: 'Статьи',
+          description: 'Проверки ФНС, проверка контрагента и закрытие фирмы с долгами.',
+          items: [
+            {
+              title: 'Проверки ФНС: кто в зоне риска и как действовать',
+              text: 'Критерии риска, как ФНС выявляет неучтённые доходы и как отвечать на запросы.',
+              url: 'article-fns-proverki.html'
+            },
+            {
+              title: 'Как проверить контрагента перед сделкой',
+              text: 'Экспресс и углублённая проверка, судебные и финансовые риски, признаки неблагонадёжности.',
+              url: 'article-proverka-kontragenta.html'
+            },
+            {
+              title: 'Как закрыть фирму с долгами',
+              text: 'Законные сценарии ликвидации, риски для собственников и когда нужна процедура банкротства.',
+              url: 'article-zakryt-firmu-s-dolgami.html'
+            }
+          ]
+        },
+        news: {
+          title: 'Новости компании',
+          description: 'Публикуем обновления по услугам, изменениям в законодательстве и новым кейсам.',
+          items: []
+        },
+        videos: {
+          title: 'Полезные видео',
+          description: 'Подборка коротких видеоразборов по налоговым проверкам и юридической защите бизнеса.',
+          items: []
+        }
+      };
+
+      let state = loadState();
+
+      const hashMatches = window.location.hash === ADMIN_HASH;
+      const adminOverlay = document.getElementById('adminPanel');
+      const adminClose = document.getElementById('adminClose');
+      const adminSave = document.getElementById('adminSave');
+
+      document.addEventListener('DOMContentLoaded', () => {
+        renderCards();
+        bindControls();
+        if (hashMatches) {
+          openAdmin();
+        }
+      });
+
+      function openAdmin() {
+        adminOverlay.setAttribute('data-visible', 'true');
+        adminOverlay.setAttribute('aria-hidden', 'false');
+        populateAdmin();
+      }
+
+      function closeAdmin() {
+        adminOverlay.setAttribute('data-visible', 'false');
+        adminOverlay.setAttribute('aria-hidden', 'true');
+        window.location.hash = '';
+      }
+
+      adminClose?.addEventListener('click', closeAdmin);
+
+      function bindControls() {
+        document.querySelectorAll('[data-add-entry]').forEach((button) => {
+          button.addEventListener('click', () => {
+            const section = button.dataset.addEntry;
+            addAdminEntry(section, { title: '', text: '', url: '' });
+          });
+        });
+
+        adminSave?.addEventListener('click', () => {
+          collectAdminState();
+          saveState();
+          renderCards();
+          alert('Сохранено. Теперь контент будет подгружаться с новых значений.');
+        });
+      }
+
+      function populateAdmin() {
+        setInputValue('admin-articles-title', state.articles.title);
+        setInputValue('admin-articles-description', state.articles.description);
+        setInputValue('admin-news-title', state.news.title);
+        setInputValue('admin-news-description', state.news.description);
+        setInputValue('admin-videos-title', state.videos.title);
+        setInputValue('admin-videos-description', state.videos.description);
+
+        fillEntryContainer('articles', state.articles.items);
+        fillEntryContainer('news', state.news.items);
+        fillEntryContainer('videos', state.videos.items);
+      }
+
+      function fillEntryContainer(section, items) {
+        const container = document.getElementById(`admin-${section}-list`);
+        if (!container) return;
+        container.innerHTML = '';
+        items.forEach((entry) => {
+          addAdminEntry(section, entry);
+        });
+      }
+
+      function addAdminEntry(section, entry) {
+        const container = document.getElementById(`admin-${section}-list`);
+        if (!container) return;
+        const wrapper = document.createElement('div');
+        wrapper.className = 'admin-entry';
+
+        wrapper.innerHTML = `
+          <input type="text" class="admin-entry-title" placeholder="Заголовок" value="${escapeHtml(entry.title)}">
+          <textarea class="admin-entry-text" rows="2" placeholder="Текст">${escapeHtml(entry.text)}</textarea>
+          <input type="text" class="admin-entry-url" placeholder="Ссылка" value="${escapeHtml(entry.url)}">
+          <div class="admin-controls">
+            <button type="button" class="delete-entry">Удалить</button>
+          </div>
+        `;
+
+        wrapper.querySelector('.delete-entry')?.addEventListener('click', () => {
+          wrapper.remove();
+        });
+
+        container.appendChild(wrapper);
+      }
+
+      function collectAdminState() {
+        state.articles.title = document.getElementById('admin-articles-title')?.value.trim() || '';
+        state.articles.description = document.getElementById('admin-articles-description')?.value.trim() || '';
+        state.news.title = document.getElementById('admin-news-title')?.value.trim() || '';
+        state.news.description = document.getElementById('admin-news-description')?.value.trim() || '';
+        state.videos.title = document.getElementById('admin-videos-title')?.value.trim() || '';
+        state.videos.description = document.getElementById('admin-videos-description')?.value.trim() || '';
+
+        state.articles.items = collectEntries('articles');
+        state.news.items = collectEntries('news');
+        state.videos.items = collectEntries('videos');
+      }
+
+      function collectEntries(section) {
+        const container = document.getElementById(`admin-${section}-list`);
+        if (!container) return [];
+        return Array.from(container.children).map((entry) => ({
+          title: entry.querySelector('.admin-entry-title')?.value.trim() || '',
+          text: entry.querySelector('.admin-entry-text')?.value.trim() || '',
+          url: entry.querySelector('.admin-entry-url')?.value.trim() || ''
+        })).filter((entry) => entry.title || entry.text || entry.url);
+      }
+
+      function renderCards() {
+        populateCard('articles', state.articles);
+        populateCard('news', state.news);
+        populateCard('videos', state.videos);
+      }
+
+      function populateCard(section, data) {
+        const title = document.getElementById(`${section}-title`);
+        const description = document.getElementById(`${section}-description`);
+        const list = document.getElementById(`${section}-list`);
+        if (title) title.textContent = data.title;
+        if (description) description.textContent = data.description;
+        if (!list) return;
+        list.innerHTML = '';
+
+        if (!data.items.length) {
+          const placeholder = document.createElement('p');
+          placeholder.style.margin = '0.4rem 0 0';
+          placeholder.textContent = 'Контент пока не добавлен.';
+          list.appendChild(placeholder);
+          return;
+        }
+
+        data.items.forEach((item) => {
+          const link = document.createElement('a');
+          link.className = 'blog-article-link';
+          if (item.url) {
+            link.href = item.url;
+            link.target = '_blank';
+            link.rel = 'noopener';
+          } else {
+            link.href = '#';
+          }
+
+          const title = document.createElement('span');
+          title.className = 'blog-article-title';
+          title.textContent = item.title;
+
+          const text = document.createElement('span');
+          text.className = 'blog-article-text';
+          text.textContent = item.text;
+
+          link.appendChild(title);
+          link.appendChild(text);
+          list.appendChild(link);
+        });
+      }
+
+      function loadState() {
+        try {
+          const stored = localStorage.getItem(STORAGE_KEY);
+          if (stored) {
+            return JSON.parse(stored);
+          }
+        } catch (error) {
+          console.warn('Не удалось загрузить сохранённый контент блога.', error);
+        }
+        return deepClone(defaultState);
+      }
+
+      function saveState() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        } catch (error) {
+          console.warn('Не удалось сохранить контент.', error);
+        }
+      }
+
+      function setInputValue(id, value) {
+        const el = document.getElementById(id);
+        if (el) el.value = value || '';
+      }
+
+      function deepClone(value) {
+        return JSON.parse(JSON.stringify(value));
+      }
+
+      function escapeHtml(text = '') {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+      }
+    })();
   </script>
   <script src="scripts/main.js" defer></script>
 </body>
