@@ -274,16 +274,6 @@
     "title": "Полезные видео",
     "description": "Подборка коротких видеоразборов по налоговым проверкам и юридической защите бизнеса.",
     "items": [
-      {
-        "slug": "testvideo",
-        "title": "тестовое видео",
-        "preview": "какое то видео",
-        "coverUrl": "",
-        "videoUrl": "https://yandex.ru/video/preview/3774420881870781690?parent-reqid=1775909742804725-870449216675010371-balancer-l7leveler-kubr-yp-klg-149-BAL&from=video_main&source=themed_suggest",
-        "bodyHtml": "",
-        "text": "678",
-        "url": "/article-4567.html"
-      }
     ]
   },
   "updatedAt": "2026-04-23T12:30:00.000Z"
