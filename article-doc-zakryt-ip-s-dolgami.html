@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Закрыть ИП с долгами</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/layout.css">
+  <style>
+    .article-page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1rem 4rem;
+    }
+    .article-content {
+      background: #fff;
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 24px 60px rgba(9, 8, 33, 0.08);
+    }
+    .article-content h1 {
+      margin-top: 0;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2rem;
+      line-height: 1.15;
+    }
+    .article-content h2 {
+      margin-top: 1.75rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.2rem;
+    }
+    .article-content p {
+      margin: 0.9rem 0;
+      line-height: 1.7;
+      color: #222;
+      white-space: pre-wrap;
+    }
+    .article-content hr {
+      border: 0;
+      border-top: 1px solid #e5e5e5;
+      margin: 1.5rem 0;
+    }
+    .article-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin: 0 0 1.25rem;
+    }
+    .btn.secondary {
+      background: transparent;
+      border: 1px solid #c79d63;
+      color: #090821;
+    }
+    @media (max-width: 640px) {
+      .article-content { padding: 1.25rem; }
+      .article-content h1 { font-size: 1.55rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <header class="site-header">
+      <div class="header_top clearfix affix-top">
+        <div class="header-item header-logo">
+          <a href="/"><img src="assets/image-132183f4-a90c-4bb2-bf58-57313ca3ff13.png" alt="???????? ???????"></a>
+        </div>
+        <div class="header-item header-address">
+          <span class="icon"><img src="assets/icon-location.svg" alt="??????????"></span>
+          <div>
+            <div>?????-?????????,</div>
+            <div>??. ??????? ????????????,</div>
+            <div>?.22, ??. 412</div>
+          </div>
+        </div>
+        <div class="header-item header-hours">
+          <span class="icon"><img src="assets/icon-clock.svg" alt="????"></span>
+          <div>
+            <div>?? - ??: 10.00 - 18.00</div>
+            <div>?? - ??: ????????</div>
+          </div>
+        </div>
+        <div class="header-item header-phone">
+          <span class="icon"><img src="assets/icon-phone.svg" alt="???????"></span>
+          <div class="phone-values">
+            <div>8 (812) 207-13-76</div>
+            <div>+7 (911) 920-01-72</div>
+          </div>
+        </div>
+        <button class="menu-toggle" aria-expanded="false" aria-controls="primary-menu">????</button>
+      </div>
+      <nav class="main-menu" id="primary-menu">
+        <ul class="menu">
+          <li class="menu-item"><a href="/">???????</a></li>
+          <li class="menu-item menu-item-has-children">
+            <a href="/#about">? ????????</a>
+            <ul class="sub-menu">
+              <li class="menu-item"><a href="/#mission">?????? ? ????????</a></li>
+              <li class="menu-item"><a href="/#team">??????? ?????????</a></li>
+              <li class="menu-item"><a href="/#partners">???? ????????</a></li>
+              <li class="menu-item"><a href="/#reviews">?????? ????????</a></li>
+              <li class="menu-item"><a href="/#licenses">??????????? ? ????????</a></li>
+            </ul>
+          </li>
+          <li class="menu-item menu-item-has-children">
+            <a href="/#services">?????? ? ????</a>
+            <ul class="sub-menu">
+              <li class="menu-item"><a href="service-buhgalterskij-autsorsing.html">????????????? ??????????</a></li>
+              <li class="menu-item"><a href="service-kadrovy-uchet.html">???????? ????</a></li>
+              <li class="menu-item"><a href="service-finansovy-konsalting.html">?????????? ??????????</a></li>
+              <li class="menu-item"><a href="service-yuridicheskie-uslugi.html">??????????? ??????</a></li>
+              <li class="menu-item"><a href="service-krizis-menedzhment.html">??????-??????????</a></li>
+            </ul>
+          </li>
+          <li class="menu-item menu-item-has-children">
+            <a href="/#blog">???? / ??????????</a>
+            <ul class="sub-menu">
+              <li class="menu-item"><a href="/#articles">??????</a></li>
+            </ul>
+          </li>
+          <li class="menu-item menu-item-has-children">
+            <a href="/#contacts">????????</a>
+            <ul class="sub-menu">
+              <li class="menu-item"><a href="/#address">????? ? ????? ???????</a></li>
+              <li class="menu-item"><a href="/#details">????????? ????????</a></li>
+              <li class="menu-item"><a href="/#feedback">???????? ?????</a></li>
+              <li class="menu-item"><a href="/#phones">???????, e-mail, ???????????</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <article class="article-page">
+      <div class="article-content">
+        <h1>Закрыть ИП с долгами</h1>
+        <div class="article-actions">
+          <a class="btn primary" href="/">? ?????</a>
+          <a class="btn secondary" href="docs/5.docx" target="_blank" rel="noopener">??????? ???????? .docx</a>
+        </div>
+        <p>ЖАБА ВАМ В ПОМОЩь!</p>
+        <p>Года три назад один мой знакомый ушел от нас, посчитав, что держать ООО ему накладно. Открыл ИП, решив вести учёт самостоятельно.</p>
+        <p>И тут недавно он мне звонит: &quot;Света, помоги! За три года не сдал ни одного отчета по ИП, ничего не платил. Что делать?&quot;</p>
+        <p>Даю ему свой любимый ответ: &quot;Закрыть ИП! &quot;</p>
+        <p>И вот 26.01 мы написали заявление – прошу закрыть ИП, не смотря на то, что отчеты не сданы, налоги не плачены.</p>
+        <p>Заявление он сам отвез в ИФНС № 15 – в Санкт-Петербурге именно эта налоговая занимается открытием и закрытием бизнеса. Заявление приняли.</p>
+        <p>Уже 28.01 он на почту получил уведомление, что ИП закрыто. Я сделала все нужные отчеты, а он отвез их в налоговую, где стоял на учете.</p>
+        <p>Отчеты приняли. Теперь осталось заплатить долги по налогам!</p>
+        <p>СКОЛЬКО?Давайте посчитаем: взносы в СФР и налог УСНО за 2023 год (2024, 2025 год ИП не работал);- 149 000 общая сумма взносов с 2023 по 2025 год;+ штрафы за не вовремя сданные отчеты - 3000 как минимум;+ пени за не вовремя сданные отчеты - считать не буду, думаю тысяч 15 наберется.</p>
+        <p>Моя жаба в шоке! По-моему, слишком дорого?! А вы как думаете?</p>
+        <p>Я ведь снова о наболевшем!Если вы понимаете, что работы нет – закройте ИП! Будет работа – откроете!</p>
+        <p>Не надо откладывать и бояться, что не закроют. Закроют! И без отчетов и с долгами по налогам.</p>
+        <p>Нет запрета на количество открытий-закрытий. А долги за вами останутся, не переживайте, но зато копиться не будут!</p>
+        <p>Не платить там, где можно не платить! Вот это я и называю разумной экономией.</p>
+        <p>Жаба вам в помощь!</p>
+        <p>Правовое основание:</p>
+        <p>ст. 430 НК РФ; ст. 22.3 Федеральный закон от 08.08.2001 № 129-ФЗ.</p>
+      </div>
+    </article>
+
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div>
+          <div class="logo">
+            <a href="/"><img src="assets/image-132183f4-a90c-4bb2-bf58-57313ca3ff13.png" alt="???????? ???????"></a>
+          </div>
+          <p>???????? ??????-????????? ? 2006 ????.</p>
+        </div>
+        <div>
+          <h4>??????</h4>
+          <ul>
+            <li><a href="service-buhgalterskij-autsorsing.html">????????????? ??????????</a></li>
+            <li><a href="service-kadrovy-uchet.html">???????? ????</a></li>
+            <li><a href="service-finansovy-konsalting.html">?????????? ??????????</a></li>
+            <li><a href="service-yuridicheskie-uslugi.html">??????????? ??????</a></li>
+            <li><a href="service-krizis-menedzhment.html">??????-??????????</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>????????</h4>
+          <ul id="details">
+            <li id="address">?????: ??. ??????? ???????????? ?.22 ??. 412</li>
+            <li>?????: info@vicons.ru</li>
+            <li id="phones" class="phone-number">8 (812) 207-13-76</li>
+            <li class="phone-number">+7 (911) 920-01-72</li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">Copyright ? 2006-2026 ??? ????? ????????.</div>
+    </footer>
+  </div>
+  <script src="scripts/main.js" defer></script>
+</body>
+</html>
